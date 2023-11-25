@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/Ability"
+        android:layout_width="100sp"
+        android:layout_height="25sp"
+        android:text="Ability"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1" />
+
+    <AutoCompleteTextView
+        android:id="@+id/FillAbility"
+        android:layout_width="300sp"
+        android:layout_height="25sp"
+        android:backgroundTint="@android:color/transparent"
+        android:hint="Enter Ability Here"
+        android:paddingTop="0sp"
+        android:paddingBottom="0sp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:inputType="text|textNoSuggestions|textFilter"
+        app:layout_constraintLeft_toRightOf="@id/Ability"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1" />
+
+    <TextView
+        android:id="@+id/Move1"
+        android:layout_width="100sp"
+        android:layout_height="25sp"
+        android:text="Move 1"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintTop_toBottomOf="@id/Ability"
+        app:layout_constraintVertical_bias="0.15" />
+
+    <AutoCompleteTextView
+        android:id="@+id/FillMove1"
+        android:layout_width="300sp"
+        android:layout_height="25sp"
+        android:backgroundTint="@android:color/transparent"
+        android:hint="Enter Move Name Here"
+        android:paddingTop="0sp"
+        android:paddingBottom="0sp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:inputType="text|textNoSuggestions|textFilter"
+        app:layout_constraintLeft_toRightOf="@id/Move1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintTop_toBottomOf="@id/FillAbility"
+        app:layout_constraintVertical_bias="0.1" />
+
+    <TextView
+        android:id="@+id/Move2"
+        android:layout_width="100sp"
+        android:layout_height="25sp"
+        android:text="Move 2"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Move1"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <AutoCompleteTextView
+        android:id="@+id/FillMove2"
+        android:layout_width="300sp"
+        android:layout_height="25sp"
+        android:backgroundTint="@android:color/transparent"
+        android:hint="Enter Move Name Here"
+        android:paddingTop="0sp"
+        android:paddingBottom="0sp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:inputType="text|textNoSuggestions|textFilter"
+        app:layout_constraintLeft_toRightOf="@id/Move2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintTop_toBottomOf="@id/FillMove1"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <TextView
+        android:id="@+id/Move3"
+        android:layout_width="100sp"
+        android:layout_height="25sp"
+        android:text="Move 3"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Move2"
+        app:layout_constraintVertical_bias="0.25" />
+
+    <AutoCompleteTextView
+        android:id="@+id/FillMove3"
+        android:layout_width="300sp"
+        android:layout_height="25sp"
+        android:backgroundTint="@android:color/transparent"
+        android:hint="Enter Move Name Here"
+        android:paddingTop="0sp"
+        android:paddingBottom="0sp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:inputType="text|textNoSuggestions|textFilter"
+        app:layout_constraintLeft_toRightOf="@id/Move3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintTop_toBottomOf="@id/FillMove2"
+        app:layout_constraintVertical_bias="0.25" />
+
+    <TextView
+        android:id="@+id/Move4"
+        android:layout_width="100sp"
+        android:layout_height="25sp"
+        android:text="Move 4"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Move3"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <AutoCompleteTextView
+        android:id="@+id/FillMove4"
+        android:layout_width="300sp"
+        android:layout_height="25sp"
+        android:backgroundTint="@android:color/transparent"
+        android:hint="Enter Move Name Here"
+        android:paddingTop="0sp"
+        android:paddingBottom="0sp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:inputType="text|textNoSuggestions|textFilter"
+        app:layout_constraintLeft_toRightOf="@id/Move4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintTop_toBottomOf="@id/FillMove3"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <Button
+        android:id="@+id/startSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="8dp"
+        android:onClick="updateList"
+        android:text="Search"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/FillMove4"
+        tools:layout_constraintVertical_bias="0.35" />/>
+
+    <ListView
+        android:id="@+id/resultList"
+        android:layout_width="414dp"
+        android:layout_height="549dp"
+        android:layout_marginTop="8dp"
+        android:paddingLeft="10sp"
+        android:paddingTop="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startSearch" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
