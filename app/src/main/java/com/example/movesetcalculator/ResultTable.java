@@ -4,9 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.HorizontalScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -29,15 +33,22 @@ public class ResultTable extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result_table);
 
-        TableLayout tableLayout = findViewById(R.id.tableLayout);
+        Button goBackButton = findViewById(R.id.goBackButton);
+        goBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Define the behavior when the "Go Back" button is clicked
+                goBackToPage1();
+            }
+        });
 
+        TableLayout tableLayout = findViewById(R.id.tableLayout);
 
         List<HashMap<String, Object>> pokemonDetailsList =
                 (List<HashMap<String, Object>>) getIntent().getSerializableExtra("matchingPokemonList");
 
         // Populate your table dynamically with the matching Pokémon data
         if (pokemonDetailsList != null && !pokemonDetailsList.isEmpty()) {
-
 
             for (HashMap<String, Object> pokemonDetails : pokemonDetailsList) {
                 addTableRow(tableLayout, pokemonDetails);
@@ -93,8 +104,16 @@ public class ResultTable extends AppCompatActivity {
         textView.setTextColor(headerView.getCurrentTextColor());
         textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, headerView.getTextSize());
         // Apply other styling or properties as needed
+        textView.setSingleLine(true); // Allow single line
+        textView.setEllipsize(TextUtils.TruncateAt.MARQUEE); // Enable marquee effect for scrolling
+        textView.setHorizontallyScrolling(true); // Enable horizontal scrolling
 
         return textView;
+    }
+    private void goBackToPage1() {
+        Intent intent = new Intent(ResultTable.this, MainActivity.class);
+        startActivity(intent);
+        finish(); // Optional: Close the current activity to prevent stacking activities
     }
 }
 
