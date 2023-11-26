@@ -13,11 +13,14 @@
         android:theme="@style/Theme.MovesetCalculator"
         tools:targetApi="31">
         <activity
+            android:name=".MainActivity2"
+            android:exported="false" />
+        <activity
             android:name=".ResultTable"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="false"
             android:label="@string/title_activity_result_table"
-            android:theme="@style/Theme.MovesetCalculator.Fullscreen" />
+            android:theme="@style/Theme.MovesetCalculator" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

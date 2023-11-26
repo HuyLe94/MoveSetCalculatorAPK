@@ -7,8 +7,10 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private AutoCompleteTextView move2;
     private AutoCompleteTextView move3;
     private AutoCompleteTextView move4;
+    List<HashMap<String, Object>> matchingPokemonList = new ArrayList<>();
 
 
 
@@ -118,7 +121,14 @@ public class MainActivity extends AppCompatActivity {
             startSearchButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                        updateList();
+                    updateList();
+
+                    // Create an Intent to start Page2Activity
+                    Intent intent = new Intent(MainActivity.this, ResultTable.class);
+                    intent.putExtra("matchingPokemonList", (Serializable) matchingPokemonList);
+
+                    // Start Page2Activity
+                    startActivity(intent);
                     }
             });
 
@@ -153,14 +163,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    private void updateList() {
+    private List<HashMap<String, Object>> updateList() {
         String enteredMove1 = move1.getText().toString().trim();
         String enteredMove2 = move2.getText().toString().trim();
         String enteredMove3 = move3.getText().toString().trim();
         String enteredMove4 = move4.getText().toString().trim();
         String enteredAbility = ability.getText().toString().trim();
 
-        List<String> matchingPokemonList = new ArrayList<>();
+
 
         try {
             for (int i = 0; i < jsonArray.length(); i++) {
@@ -204,19 +214,50 @@ public class MainActivity extends AppCompatActivity {
                         (enteredMove3.isEmpty() || move3Found) &&
                         (enteredMove4.isEmpty() || move4Found) &&
                         (enteredAbility.isEmpty() || abilityFound)) {
-                    String formattedEntry = "Pokedex : " + pokemon.getString("id") + " - " + pokemon.getString("name");
-                    matchingPokemonList.add(formattedEntry);
+                    //String formattedEntry = "Pokedex : " + pokemon.getString("id") + " - " + pokemon.getString("name");
+                    //matchingPokemonList.add(formattedEntry);
+                    //HashMap<String, Object> pokemonDetails = new HashMap<>();
+                    //pokemonDetails.put("id", pokemon.getInt("id"));
+                    String name = pokemon.getString("name");
+                    int hp = pokemon.getJSONObject("stats").getInt("HP");
+                    int attack = pokemon.getJSONObject("stats").getInt("Attack");
+                    int defense = pokemon.getJSONObject("stats").getInt("Defense");
+                    int satk = pokemon.getJSONObject("stats").getInt("Sp. Atk");
+                    int sdef = pokemon.getJSONObject("stats").getInt("Sp. Def");
+                    int speed = pokemon.getJSONObject("stats").getInt("Speed");
+
+                    // Log Pokémon details that match the criteria
+                    //Log.d("MatchingPokemon", "Name: " + name +
+                    //        ", HP: " + hp +
+                    //        ", Attack: " + attack +
+                    //        ", Defense: " + defense +
+                    //        ", Sp. Atk: " + satk +
+                    //        ", Sp. Def: " + sdef +
+                    //        ", Speed: " + speed);
+//
+                    HashMap<String, Object> pokemonDetails = new HashMap<>();
+                    pokemonDetails.put("name", name);
+                    pokemonDetails.put("hp", hp);
+                    pokemonDetails.put("attack", attack);
+                    pokemonDetails.put("defense", defense);
+                    pokemonDetails.put("satk", satk);
+                    pokemonDetails.put("sdef", sdef);
+                    pokemonDetails.put("speed", speed);
+
+                    // Add the Pokemon details HashMap to the list
+                    matchingPokemonList.add(pokemonDetails);
                 }
             }
 
 
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+            /*ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                     android.R.layout.simple_list_item_1, matchingPokemonList);
             ListView resultListView = findViewById(R.id.resultList);
-            resultListView.setAdapter(adapter);
+            resultListView.setAdapter(adapter);*/
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        return matchingPokemonList;
     }
 }
 
