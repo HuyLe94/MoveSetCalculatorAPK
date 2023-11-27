@@ -21,6 +21,7 @@ import org.json.JSONException;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         View rootView = findViewById(android.R.id.content);
         InputStream inputStream = getResources().openRawResource(R.raw.alldata);
         // Replace "your_json_file" with the actual name of your JSON file without the file extension
