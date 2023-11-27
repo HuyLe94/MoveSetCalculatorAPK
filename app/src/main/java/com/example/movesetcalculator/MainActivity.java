@@ -55,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         View rootView = findViewById(android.R.id.content);
+
+        matchingPokemonList = new ArrayList<>();
+
         InputStream inputStream = getResources().openRawResource(R.raw.alldata);
         // Replace "your_json_file" with the actual name of your JSON file without the file extension
 
@@ -248,7 +251,6 @@ public class MainActivity extends AppCompatActivity {
                     //HashMap<String, Object> pokemonDetails = new HashMap<>();
                     //pokemonDetails.put("id", pokemon.getInt("id"));
                     String name = pokemon.getString("name");
-
 
                     int hp = pokemon.getJSONObject("stats").getInt("HP");
                     if(getStatCondition(hpConditionStr)!=-1 && getStatCondition(hpConditionStr)>hp){

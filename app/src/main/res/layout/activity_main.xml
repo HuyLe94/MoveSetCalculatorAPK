@@ -49,6 +49,7 @@
         android:text="Move 4"
         android:textAlignment="center"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/Move3" />
 
@@ -94,6 +95,7 @@
         android:text="Move 3"
         android:textAlignment="center"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/Move2" />
 
@@ -105,6 +107,7 @@
         android:text="Ability"
         android:textAlignment="center"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -133,6 +136,7 @@
         android:text="Move 1"
         android:textAlignment="center"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/Ability" />
 
@@ -144,6 +148,7 @@
         android:text="Move 2"
         android:textAlignment="center"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/Move1" />
 
@@ -166,6 +171,7 @@
         android:text="HP"
         android:textAlignment="center"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/Move4" />
 
@@ -178,6 +184,7 @@
         android:text="ATK"
         android:textAlignment="center"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintLeft_toRightOf="@id/hpLabel"
         app:layout_constraintTop_toBottomOf="@id/Move4" />
 
@@ -190,43 +197,9 @@
         android:text="DEF"
         android:textAlignment="center"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintLeft_toRightOf="@id/atkLabel"
         app:layout_constraintTop_toBottomOf="@id/Move4" />
-
-    <TextView
-        android:id="@+id/satkLabel"
-        android:layout_width="100sp"
-        android:layout_height="25sp"
-        android:layout_marginTop="90dp"
-        android:text="S.ATK"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/hpLabel" />
-
-    <TextView
-        android:id="@+id/sdefLabel"
-        android:layout_width="100sp"
-        android:layout_height="25sp"
-        android:layout_marginLeft="52dp"
-        android:layout_marginTop="90dp"
-        android:text="S.DEF"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toRightOf="@id/hpLabel"
-        app:layout_constraintTop_toBottomOf="@id/atkLabel" />
-
-    <TextView
-        android:id="@+id/speedLabel"
-        android:layout_width="100sp"
-        android:layout_height="25sp"
-        android:layout_marginLeft="52dp"
-        android:layout_marginTop="90dp"
-        android:text="SPEED"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toRightOf="@id/sdefLabel"
-        app:layout_constraintTop_toBottomOf="@id/defLabel" />
 
     <EditText
         android:id="@+id/hpNumber"
@@ -276,21 +249,6 @@
         app:layout_constraintTop_toBottomOf="@id/defLabel" />
 
     <EditText
-        android:id="@+id/satkNumber"
-        android:layout_width="100dp"
-        android:layout_height="35dp"
-        android:backgroundTint="@android:color/transparent"
-        android:ems="10"
-        android:hint="S.ATK #"
-        android:inputType="number"
-        android:paddingTop="0sp"
-        android:paddingBottom="0sp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/satkLabel" />
-
-    <EditText
         android:id="@+id/sdefNumber"
         android:layout_width="100dp"
         android:layout_height="35dp"
@@ -305,6 +263,59 @@
         android:textSize="20sp"
         app:layout_constraintLeft_toRightOf="@id/satkNumber"
         app:layout_constraintTop_toBottomOf="@id/sdefLabel" />
+
+    <TextView
+        android:id="@+id/speedLabel"
+        android:layout_width="100sp"
+        android:layout_height="25sp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginTop="64dp"
+        android:text="SPEED"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@id/sdefLabel"
+        app:layout_constraintTop_toBottomOf="@id/defLabel" />
+
+    <TextView
+        android:id="@+id/satkLabel"
+        android:layout_width="100sp"
+        android:layout_height="25sp"
+        android:layout_marginTop="64dp"
+        android:text="S.ATK"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/hpLabel" />
+
+    <EditText
+        android:id="@+id/satkNumber"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:backgroundTint="@android:color/transparent"
+        android:ems="10"
+        android:hint="S.ATK #"
+        android:inputType="number"
+        android:paddingTop="0sp"
+        android:paddingBottom="0sp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/satkLabel" />
+
+    <TextView
+        android:id="@+id/sdefLabel"
+        android:layout_width="100sp"
+        android:layout_height="25sp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginTop="64dp"
+        android:text="S.DEF"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@id/hpLabel"
+        app:layout_constraintTop_toBottomOf="@id/atkLabel" />
 
     <EditText
         android:id="@+id/speedNumber"
