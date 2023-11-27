@@ -29,6 +29,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     private AutoCompleteTextView move2;
     private AutoCompleteTextView move3;
     private AutoCompleteTextView move4;
+
+
     List<HashMap<String, Object>> matchingPokemonList = new ArrayList<>();
 
 
@@ -170,6 +173,29 @@ public class MainActivity extends AppCompatActivity {
         String enteredMove4 = move4.getText().toString().trim();
         String enteredAbility = ability.getText().toString().trim();
 
+        EditText hpNumberEditText = findViewById(R.id.hpNumber);
+        String hpConditionStr = hpNumberEditText.getText().toString().trim();
+
+        EditText atkNumberEditText = findViewById(R.id.atkNumber);
+        String atkConditionStr = atkNumberEditText.getText().toString().trim();
+
+        EditText defNumberEditText = findViewById(R.id.defNumber);
+        String defConditionStr = defNumberEditText.getText().toString().trim();
+
+        EditText satkNumberEditText = findViewById(R.id.satkNumber);
+        String satkConditionStr = satkNumberEditText.getText().toString().trim();
+
+        EditText sdefNumberEditText = findViewById(R.id.sdefNumber);
+        String sdefConditionStr = sdefNumberEditText.getText().toString().trim();
+
+        EditText speedNumberEditText = findViewById(R.id.speedNumber);
+        String speedConditionStr = speedNumberEditText.getText().toString().trim();
+
+        boolean meetAllConditions = true;
+
+
+
+
 
 
         try {
@@ -183,6 +209,7 @@ public class MainActivity extends AppCompatActivity {
                 boolean move3Found = false;
                 boolean move4Found = false;
                 boolean abilityFound = false;
+
 
                 for (int j = 0; j < moves.length(); j++) {
                     String move = moves.getString(j);
@@ -219,22 +246,41 @@ public class MainActivity extends AppCompatActivity {
                     //HashMap<String, Object> pokemonDetails = new HashMap<>();
                     //pokemonDetails.put("id", pokemon.getInt("id"));
                     String name = pokemon.getString("name");
-                    int hp = pokemon.getJSONObject("stats").getInt("HP");
-                    int attack = pokemon.getJSONObject("stats").getInt("Attack");
-                    int defense = pokemon.getJSONObject("stats").getInt("Defense");
-                    int satk = pokemon.getJSONObject("stats").getInt("Sp. Atk");
-                    int sdef = pokemon.getJSONObject("stats").getInt("Sp. Def");
-                    int speed = pokemon.getJSONObject("stats").getInt("Speed");
 
-                    // Log Pokémon details that match the criteria
-                    //Log.d("MatchingPokemon", "Name: " + name +
-                    //        ", HP: " + hp +
-                    //        ", Attack: " + attack +
-                    //        ", Defense: " + defense +
-                    //        ", Sp. Atk: " + satk +
-                    //        ", Sp. Def: " + sdef +
-                    //        ", Speed: " + speed);
-//
+
+                    int hp = pokemon.getJSONObject("stats").getInt("HP");
+                    if(getStatCondition(hpConditionStr)!=-1 && getStatCondition(hpConditionStr)>hp){
+                        continue;
+                    }
+
+                    int attack = pokemon.getJSONObject("stats").getInt("Attack");
+                    if(getStatCondition(atkConditionStr)!=-1 && getStatCondition(atkConditionStr)>attack){
+                        continue;
+                    }
+
+                    int defense = pokemon.getJSONObject("stats").getInt("Defense");
+                    if(getStatCondition(defConditionStr)!=-1 && getStatCondition(defConditionStr)>defense){
+                        continue;
+                    }
+
+                    int satk = pokemon.getJSONObject("stats").getInt("Sp. Atk");
+                    if(getStatCondition(satkConditionStr)!=-1 && getStatCondition(satkConditionStr)>satk){
+                        continue;
+                    }
+
+                    int sdef = pokemon.getJSONObject("stats").getInt("Sp. Def");
+                    if(getStatCondition(sdefConditionStr)!=-1 && getStatCondition(sdefConditionStr)>sdef){
+                        continue;
+                    }
+
+                    int speed = pokemon.getJSONObject("stats").getInt("Speed");
+                    if(getStatCondition(speedConditionStr)!=-1 && getStatCondition(speedConditionStr)>speed){
+                        continue;
+                    }
+
+
+
+
                     HashMap<String, Object> pokemonDetails = new HashMap<>();
                     pokemonDetails.put("name", name);
                     pokemonDetails.put("hp", hp);
@@ -259,6 +305,14 @@ public class MainActivity extends AppCompatActivity {
         }
         return matchingPokemonList;
     }
+
+    private int getStatCondition(String conditionStr) {
+        if (!conditionStr.isEmpty()) {
+            return Integer.parseInt(conditionStr);
+        }
+        return -1; // Return a default value (0) if the condition string is empty
+    }
+
 }
 
 

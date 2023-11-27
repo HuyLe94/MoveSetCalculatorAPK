@@ -152,11 +152,174 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="156dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="30dp"
         android:onClick="updateList"
         android:text="Search"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/FillMove4" />
+        app:layout_constraintTop_toBottomOf="@+id/sdefNumber" />
 
+    <TextView
+        android:id="@+id/hpLabel"
+        android:layout_width="100sp"
+        android:layout_height="25sp"
+        android:layout_marginTop="30dp"
+        android:text="HP"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Move4" />
+
+    <TextView
+        android:id="@+id/atkLabel"
+        android:layout_width="100sp"
+        android:layout_height="25sp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginTop="30dp"
+        android:text="ATK"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toRightOf="@id/hpLabel"
+        app:layout_constraintTop_toBottomOf="@id/Move4" />
+
+    <TextView
+        android:id="@+id/defLabel"
+        android:layout_width="100sp"
+        android:layout_height="25sp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginTop="30dp"
+        android:text="DEF"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toRightOf="@id/atkLabel"
+        app:layout_constraintTop_toBottomOf="@id/Move4" />
+
+    <TextView
+        android:id="@+id/satkLabel"
+        android:layout_width="100sp"
+        android:layout_height="25sp"
+        android:layout_marginTop="90dp"
+        android:text="S.ATK"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/hpLabel" />
+
+    <TextView
+        android:id="@+id/sdefLabel"
+        android:layout_width="100sp"
+        android:layout_height="25sp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginTop="90dp"
+        android:text="S.DEF"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toRightOf="@id/hpLabel"
+        app:layout_constraintTop_toBottomOf="@id/atkLabel" />
+
+    <TextView
+        android:id="@+id/speedLabel"
+        android:layout_width="100sp"
+        android:layout_height="25sp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginTop="90dp"
+        android:text="SPEED"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toRightOf="@id/sdefLabel"
+        app:layout_constraintTop_toBottomOf="@id/defLabel" />
+
+    <EditText
+        android:id="@+id/hpNumber"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:backgroundTint="@android:color/transparent"
+        android:ems="10"
+        android:hint="HP #"
+        android:inputType="number"
+        android:paddingTop="0sp"
+        android:paddingBottom="0sp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/hpLabel" />
+
+    <EditText
+        android:id="@+id/atkNumber"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="52dp"
+        android:backgroundTint="@android:color/transparent"
+        android:ems="10"
+        android:hint="ATK #"
+        android:inputType="number"
+        android:paddingTop="0sp"
+        android:paddingBottom="0sp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toRightOf="@id/hpNumber"
+        app:layout_constraintTop_toBottomOf="@id/atkLabel" />
+
+    <EditText
+        android:id="@+id/defNumber"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="52dp"
+        android:backgroundTint="@android:color/transparent"
+        android:ems="10"
+        android:hint="DEF #"
+        android:inputType="number"
+        android:paddingTop="0sp"
+        android:paddingBottom="0sp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toRightOf="@id/atkNumber"
+        app:layout_constraintTop_toBottomOf="@id/defLabel" />
+
+    <EditText
+        android:id="@+id/satkNumber"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:ems="10"
+        android:inputType="number"
+        android:backgroundTint="@android:color/transparent"
+        android:hint="S.ATK #"
+        android:paddingTop="0sp"
+        android:paddingBottom="0sp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/satkLabel" />
+
+    <EditText
+        android:id="@+id/sdefNumber"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="52dp"
+        android:backgroundTint="@android:color/transparent"
+        android:ems="10"
+        android:hint="S.DEF #"
+        android:inputType="number"
+        android:paddingTop="0sp"
+        android:paddingBottom="0sp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toRightOf="@id/satkNumber"
+        app:layout_constraintTop_toBottomOf="@id/sdefLabel" />
+
+    <EditText
+        android:id="@+id/speedNumber"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="52dp"
+        android:backgroundTint="@android:color/transparent"
+        android:ems="10"
+        android:hint="SPEED #"
+        android:inputType="number"
+        android:paddingTop="0sp"
+        android:paddingBottom="0sp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toRightOf="@id/sdefNumber"
+        app:layout_constraintTop_toBottomOf="@id/speedLabel" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
