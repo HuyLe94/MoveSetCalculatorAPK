@@ -108,6 +108,7 @@ public class ResultTable extends AppCompatActivity {
         textView.setSingleLine(true); // Allow single line
         textView.setEllipsize(TextUtils.TruncateAt.MARQUEE); // Enable marquee effect for scrolling
         textView.setHorizontallyScrolling(true); // Enable horizontal scrolling
+        textView.setPadding(0,0,0,0);
 
         return textView;
     }

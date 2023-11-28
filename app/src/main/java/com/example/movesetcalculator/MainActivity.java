@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -43,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     private AutoCompleteTextView move2;
     private AutoCompleteTextView move3;
     private AutoCompleteTextView move4;
+    private AutoCompleteTextView type1;
+    private AutoCompleteTextView type2;
 
 
     List<HashMap<String, Object>> matchingPokemonList = new ArrayList<>();
@@ -73,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
             jsonArray = new JSONArray(jsonString);
             Set<String> uniqueMoveSuggestions = new HashSet<>(); // Use Set to store unique values
             Set<String> uniqueAbilities = new HashSet<>();
+            Set<String> uniqueTypes = new HashSet<>();
+
 
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -91,9 +96,19 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                JSONArray typesArray = jsonObject.getJSONArray("types");
+
+                for (int j = 0; j < typesArray.length(); j++) {
+                    uniqueTypes.add(typesArray.getString(j)); // Add to set to maintain uniqueness
+                }
+            }
+
             // Convert the Set back to a List for ArrayAdapter
             List<String> moveSuggestions = new ArrayList<>(uniqueMoveSuggestions);
             List<String> abilitySuggestions = new ArrayList<>(uniqueAbilities);
+            List<String> typesSuggestions = new ArrayList<>(uniqueTypes);
 
             // Sort the list alphabetically
             Collections.sort(moveSuggestions);
@@ -125,6 +140,16 @@ public class MainActivity extends AppCompatActivity {
             ability.setAdapter(abilitiesAdapter);
             ability.setThreshold(1);
 
+            type1 = findViewById(R.id.type1);
+            ArrayAdapter<String> type1List = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, typesSuggestions);
+            type1.setAdapter(type1List);
+            type1.setThreshold(1);
+
+            type2 = findViewById(R.id.type2);
+            ArrayAdapter<String> type2List = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, typesSuggestions);
+            type2.setAdapter(type2List);
+            type2.setThreshold(1);
+
             Button startSearchButton = findViewById(R.id.startSearch);
             startSearchButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -155,6 +180,12 @@ public class MainActivity extends AppCompatActivity {
             AutoCompleteTextView autoCompleteTextView4 = findViewById(R.id.FillMove4); // Replace 'yourAutoCompleteTextView2' with the ID of the second AutoCompleteTextView
             setAutoCompleteClickListener(autoCompleteTextView4);
 
+            AutoCompleteTextView autoCompleteTextView5 = findViewById(R.id.type1); // Replace 'yourAutoCompleteTextView2' with the ID of the second AutoCompleteTextView
+            setAutoCompleteClickListener(autoCompleteTextView5);
+
+            AutoCompleteTextView autoCompleteTextView6 = findViewById(R.id.type2); // Replace 'yourAutoCompleteTextView2' with the ID of the second AutoCompleteTextView
+            setAutoCompleteClickListener(autoCompleteTextView6);
+
 
         } catch (IOException | JSONException e) {
             e.printStackTrace();
@@ -177,6 +208,8 @@ public class MainActivity extends AppCompatActivity {
         String enteredMove3 = move3.getText().toString().trim();
         String enteredMove4 = move4.getText().toString().trim();
         String enteredAbility = ability.getText().toString().trim();
+        String enteredType1 = type1.getText().toString().trim();
+        String enteredType2 = type2.getText().toString().trim();
 
         EditText hpNumberEditText = findViewById(R.id.hpNumber);
         String hpConditionStr = hpNumberEditText.getText().toString().trim();
@@ -196,24 +229,20 @@ public class MainActivity extends AppCompatActivity {
         EditText speedNumberEditText = findViewById(R.id.speedNumber);
         String speedConditionStr = speedNumberEditText.getText().toString().trim();
 
-        boolean meetAllConditions = true;
-
-
-
-
-
-
         try {
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject pokemon = jsonArray.getJSONObject(i);
                 JSONArray moves = pokemon.getJSONArray("moves");
                 JSONArray abilities = pokemon.getJSONArray("abilities");
+                JSONArray types = pokemon.getJSONArray("types");
 
                 boolean move1Found = false;
                 boolean move2Found = false;
                 boolean move3Found = false;
                 boolean move4Found = false;
                 boolean abilityFound = false;
+                boolean type1Found = false;
+                boolean type2Found = false;
 
 
                 for (int j = 0; j < moves.length(); j++) {
@@ -232,6 +261,18 @@ public class MainActivity extends AppCompatActivity {
                         move4Found = true;
                     }
                 }
+
+                for (int j = 0; j < types.length(); j++) {
+                    String type = types.getString(j);
+
+                    if (type.equalsIgnoreCase(enteredType1)) {
+                        type1Found = true;
+                    }
+                    if (type.equalsIgnoreCase(enteredType2)) {
+                        type2Found = true;
+                    }
+                }
+
                 for (int j = 0; j < abilities.length(); j++) {
                     String ability = abilities.getString(j);
 
@@ -245,12 +286,15 @@ public class MainActivity extends AppCompatActivity {
                         (enteredMove2.isEmpty() || move2Found) &&
                         (enteredMove3.isEmpty() || move3Found) &&
                         (enteredMove4.isEmpty() || move4Found) &&
+                        (enteredType1.isEmpty() || type1Found) &&
+                        (enteredType2.isEmpty() || type2Found) &&
                         (enteredAbility.isEmpty() || abilityFound)) {
                     //String formattedEntry = "Pokedex : " + pokemon.getString("id") + " - " + pokemon.getString("name");
                     //matchingPokemonList.add(formattedEntry);
                     //HashMap<String, Object> pokemonDetails = new HashMap<>();
                     //pokemonDetails.put("id", pokemon.getInt("id"));
                     String name = pokemon.getString("name");
+
 
                     int hp = pokemon.getJSONObject("stats").getInt("HP");
                     if(getStatCondition(hpConditionStr)!=-1 && getStatCondition(hpConditionStr)>hp){
@@ -285,6 +329,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
                     HashMap<String, Object> pokemonDetails = new HashMap<>();
                     pokemonDetails.put("name", name);
                     pokemonDetails.put("hp", hp);
@@ -311,10 +357,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private int getStatCondition(String conditionStr) {
+        int condition = -1; // Default value if the condition string is empty or not a valid number
+
         if (!conditionStr.isEmpty()) {
-            return Integer.parseInt(conditionStr);
+            try {
+                condition = Integer.parseInt(conditionStr);
+                if (condition < 0) {
+                    condition = -1;
+                }
+            } catch (NumberFormatException e) {
+                condition = -1;
+            }
         }
-        return -1; // Return a default value (0) if the condition string is empty
+        return condition;
     }
 
 }

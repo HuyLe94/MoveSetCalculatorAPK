@@ -1,5 +1,7 @@
 package com.example.movesetcalculator;
 
+import java.util.List;
+
 public class Pokemon {
     private int id;
     private String name;
@@ -9,6 +11,7 @@ public class Pokemon {
     private int satk;
     private int sdef;
     private int speed;
+    private List<String> types;
 
     // Constructors, getters, and setters for all attributes
 
@@ -26,6 +29,14 @@ public class Pokemon {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<String> getTypes() {
+        return types;
+    }
+
+    public void setTypes(List<String> types) {
+        this.types = types;
     }
 
     public int getHp() {
