@@ -43,7 +43,7 @@ public class ResultTable extends AppCompatActivity {
             }
         });
 
-        TableLayout tableLayout = findViewById(R.id.tableLayout);
+        TableLayout tableLayout = findViewById(R.id.tableLayout2);
 
         List<HashMap<String, Object>> pokemonDetailsList =
                 (List<HashMap<String, Object>>) getIntent().getSerializableExtra("matchingPokemonList");
