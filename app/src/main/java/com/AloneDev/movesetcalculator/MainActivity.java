@@ -33,7 +33,10 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
-    private JSONArray jsonArray;
+    private JSONArray fullData;
+    private JSONArray abilitiesData;
+    private JSONArray movesData;
+    private JSONArray typesData;
     private ArrayAdapter<String> moveAdapter;
     private AutoCompleteTextView ability;
     private AutoCompleteTextView move1;
@@ -57,49 +60,36 @@ public class MainActivity extends AppCompatActivity {
 
         matchingPokemonList = new ArrayList<>();
 
-        InputStream inputStream = getResources().openRawResource(R.raw.alldata);
+
         // Replace "your_json_file" with the actual name of your JSON file without the file extension
 
-        StringBuilder stringBuilder = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                stringBuilder.append(line);
-            }
-            String jsonString = stringBuilder.toString();
+        String fullPokemonDetails = readJsonFile("alldata");
+        String uniqueMovesList = readJsonFile("unique_moves");
+        String uniqueTypesList = readJsonFile("unique_types");
+        String uniqueAbilitiesList = readJsonFile("unique_abilities");
 
             // Parse JSON string to extract unique "moves" values
-            jsonArray = new JSONArray(jsonString);
+        try {
+            fullData = new JSONArray(fullPokemonDetails);
+            typesData = new JSONArray(uniqueTypesList);
+            movesData = new JSONArray(uniqueMovesList);
+            abilitiesData = new JSONArray(uniqueAbilitiesList);
+
             Set<String> uniqueMoveSuggestions = new HashSet<>(); // Use Set to store unique values
             Set<String> uniqueAbilities = new HashSet<>();
             Set<String> uniqueTypes = new HashSet<>();
 
 
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                JSONArray movesArray = jsonObject.getJSONArray("moves");
-
-                for (int j = 0; j < movesArray.length(); j++) {
-                    uniqueMoveSuggestions.add(movesArray.getString(j)); // Add to set to maintain uniqueness
-                }
+            for (int j = 0; j < movesData.length(); j++) {
+                uniqueMoveSuggestions.add(movesData.getString(j)); // Add to set to maintain uniqueness
             }
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                JSONArray movesArray = jsonObject.getJSONArray("abilities");
-
-                for (int j = 0; j < movesArray.length(); j++) {
-                    uniqueAbilities.add(movesArray.getString(j)); // Add to set to maintain uniqueness
-                }
+            for (int j = 0; j < typesData.length(); j++) {
+                uniqueTypes.add(typesData.getString(j)); // Add to set to maintain uniqueness
+            }
+            for (int j = 0; j < abilitiesData.length(); j++) {
+                uniqueAbilities.add(abilitiesData.getString(j)); // Add to set to maintain uniqueness
             }
 
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                JSONArray typesArray = jsonObject.getJSONArray("types");
-
-                for (int j = 0; j < typesArray.length(); j++) {
-                    uniqueTypes.add(typesArray.getString(j)); // Add to set to maintain uniqueness
-                }
-            }
 
             // Convert the Set back to a List for ArrayAdapter
             List<String> moveSuggestions = new ArrayList<>(uniqueMoveSuggestions);
@@ -182,11 +172,10 @@ public class MainActivity extends AppCompatActivity {
             AutoCompleteTextView autoCompleteTextView6 = findViewById(R.id.type2); // Replace 'yourAutoCompleteTextView2' with the ID of the second AutoCompleteTextView
             setAutoCompleteClickListener(autoCompleteTextView6);
 
-
-        } catch (IOException | JSONException e) {
-            e.printStackTrace();
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
         }
-    }
+        }
 
     private void setAutoCompleteClickListener(AutoCompleteTextView autoCompleteTextView) {
         autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -226,8 +215,8 @@ public class MainActivity extends AppCompatActivity {
         String speedConditionStr = speedNumberEditText.getText().toString().trim();
 
         try {
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject pokemon = jsonArray.getJSONObject(i);
+            for (int i = 0; i < fullData.length(); i++) {
+                JSONObject pokemon = fullData.getJSONObject(i);
                 JSONArray moves = pokemon.getJSONArray("moves");
                 JSONArray abilities = pokemon.getJSONArray("abilities");
                 JSONArray types = pokemon.getJSONArray("types");
@@ -351,7 +340,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return matchingPokemonList;
     }
-
     private int getStatCondition(String conditionStr) {
         int condition = -1; // Default value if the condition string is empty or not a valid number
 
@@ -367,6 +355,27 @@ public class MainActivity extends AppCompatActivity {
         }
         return condition;
     }
+    private String readJsonFile(String fileName) {
+        StringBuilder stringBuilder = new StringBuilder();
+        try {
+            InputStream inputStream = getResources().openRawResource(getResources().getIdentifier(fileName, "raw", getPackageName()));
+
+            if (inputStream != null) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    stringBuilder.append(line);
+                }
+                inputStream.close();
+            } else {
+                // Handle file not found or any other issue
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return stringBuilder.toString();
+    }
+
 
 }
 
