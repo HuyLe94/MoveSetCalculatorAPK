@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.movesetcalculator"
+    namespace = "com.AloneDev.movesetcalculator"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.movesetcalculator"
+        applicationId = "com.AloneDev.movesetcalculator"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
