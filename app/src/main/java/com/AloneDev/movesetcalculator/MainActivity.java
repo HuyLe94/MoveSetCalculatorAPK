@@ -217,9 +217,9 @@ public class MainActivity extends AppCompatActivity {
         try {
             for (int i = 0; i < fullData.length(); i++) {
                 JSONObject pokemon = fullData.getJSONObject(i);
-                JSONArray moves = pokemon.getJSONArray("moves");
-                JSONArray abilities = pokemon.getJSONArray("abilities");
-                JSONArray types = pokemon.getJSONArray("types");
+                JSONArray moves = pokemon.getJSONArray("Moves");
+                JSONArray abilities = pokemon.getJSONArray("Abilities");
+                JSONArray types = pokemon.getJSONArray("Types");
 
                 boolean move1Found = false;
                 boolean move2Found = false;
@@ -278,35 +278,35 @@ public class MainActivity extends AppCompatActivity {
                     //matchingPokemonList.add(formattedEntry);
                     //HashMap<String, Object> pokemonDetails = new HashMap<>();
                     //pokemonDetails.put("id", pokemon.getInt("id"));
-                    String name = pokemon.getString("name");
+                    String name = pokemon.getString("Name");
 
 
-                    int hp = pokemon.getJSONObject("stats").getInt("HP");
+                    int hp = pokemon.getJSONObject("Stats").getInt("HP");
                     if(getStatCondition(hpConditionStr)!=-1 && getStatCondition(hpConditionStr)>hp){
                         continue;
                     }
 
-                    int attack = pokemon.getJSONObject("stats").getInt("Attack");
+                    int attack = pokemon.getJSONObject("Stats").getInt("Attack");
                     if(getStatCondition(atkConditionStr)!=-1 && getStatCondition(atkConditionStr)>attack){
                         continue;
                     }
 
-                    int defense = pokemon.getJSONObject("stats").getInt("Defense");
+                    int defense = pokemon.getJSONObject("Stats").getInt("Defense");
                     if(getStatCondition(defConditionStr)!=-1 && getStatCondition(defConditionStr)>defense){
                         continue;
                     }
 
-                    int satk = pokemon.getJSONObject("stats").getInt("Sp. Atk");
+                    int satk = pokemon.getJSONObject("Stats").getInt("Sp. Atk");
                     if(getStatCondition(satkConditionStr)!=-1 && getStatCondition(satkConditionStr)>satk){
                         continue;
                     }
 
-                    int sdef = pokemon.getJSONObject("stats").getInt("Sp. Def");
+                    int sdef = pokemon.getJSONObject("Stats").getInt("Sp. Def");
                     if(getStatCondition(sdefConditionStr)!=-1 && getStatCondition(sdefConditionStr)>sdef){
                         continue;
                     }
 
-                    int speed = pokemon.getJSONObject("stats").getInt("Speed");
+                    int speed = pokemon.getJSONObject("Stats").getInt("Speed");
                     if(getStatCondition(speedConditionStr)!=-1 && getStatCondition(speedConditionStr)>speed){
                         continue;
                     }
