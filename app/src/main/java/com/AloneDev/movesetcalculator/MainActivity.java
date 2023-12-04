@@ -22,13 +22,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckedTextView;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -45,9 +48,19 @@ public class MainActivity extends AppCompatActivity {
     private AutoCompleteTextView move4;
     private AutoCompleteTextView type1;
     private AutoCompleteTextView type2;
+    private CheckedTextView megaCheck ;
+    private CheckedTextView alolanCheck;
+    private CheckedTextView hisuianCheck;
+    private CheckedTextView paldeanCheck;
+    private CheckedTextView galarianCheck;
+
+
+    private ArrayList<CheckedTextView>nameFilter = new ArrayList<>();
 
 
     List<HashMap<String, Object>> matchingPokemonList = new ArrayList<>();
+
+
 
 
 
@@ -172,12 +185,39 @@ public class MainActivity extends AppCompatActivity {
             AutoCompleteTextView autoCompleteTextView6 = findViewById(R.id.type2); // Replace 'yourAutoCompleteTextView2' with the ID of the second AutoCompleteTextView
             setAutoCompleteClickListener(autoCompleteTextView6);
 
+
+
+            alolanCheck = findViewById(R.id.alolanBox);
+            galarianCheck = findViewById(R.id.galarianBox);
+            hisuianCheck = findViewById(R.id.hisuianBox);
+            paldeanCheck = findViewById(R.id.paldeanBox);
+
+            nameFilter.add(megaCheck);
+            nameFilter.add(alolanCheck);
+            nameFilter.add(galarianCheck);
+            nameFilter.add(hisuianCheck);
+            nameFilter.add(paldeanCheck);
+
+
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
         }
 
     private void setAutoCompleteClickListener(AutoCompleteTextView autoCompleteTextView) {
+
+        megaCheck =findViewById(R.id.megaBox);
+        alolanCheck = findViewById(R.id.alolanBox);
+        galarianCheck = findViewById(R.id.galarianBox);
+        hisuianCheck = findViewById(R.id.hisuianBox);
+        paldeanCheck = findViewById(R.id.paldeanBox);
+
+        nameFilter.add(megaCheck);
+        nameFilter.add(alolanCheck);
+        nameFilter.add(galarianCheck);
+        nameFilter.add(hisuianCheck);
+        nameFilter.add(paldeanCheck);
+
         autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -186,6 +226,21 @@ public class MainActivity extends AppCompatActivity {
                 imm.hideSoftInputFromWindow(autoCompleteTextView.getWindowToken(), 0);
             }
         });
+        for (final CheckedTextView checkedTextView : nameFilter) {
+            checkedTextView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Toggle the checked state of the CheckedTextView
+                    if(checkedTextView.isChecked()){
+                        checkedTextView.setChecked(false);
+                    } else {
+                        checkedTextView.setChecked(true);
+                    }
+                }
+            });
+        }
+
+
     }
     private List<HashMap<String, Object>> updateList() {
         String enteredMove1 = move1.getText().toString().trim();
@@ -279,6 +334,27 @@ public class MainActivity extends AppCompatActivity {
                     //HashMap<String, Object> pokemonDetails = new HashMap<>();
                     //pokemonDetails.put("id", pokemon.getInt("id"));
                     String name = pokemon.getString("Name");
+
+                    boolean namecheck= true;
+                    for (final CheckedTextView checkedTextView : nameFilter) {
+                        Log.d("casesearch", "case1");
+                        // Check the initial state of the CheckedTextView
+                        boolean isChecked = checkedTextView.isChecked();
+                        String text = checkedTextView.getText().toString();
+                        Log.d("casesearch", "current form check = "+text);
+
+                        // Perform actions based on the initial state and text
+                        if (isChecked && name.contains(text)) {
+                            Log.d("casesearch", "current form check does contain this = "+text);
+                            // Perform actions when initially checked and the text matches "YourString"
+                            namecheck=false;
+                        } else {
+                            // Perform other actions if needed
+                        }
+                    }
+                    if (namecheck==false){
+                        continue;
+                    }
 
 
                     int hp = pokemon.getJSONObject("Stats").getInt("HP");
