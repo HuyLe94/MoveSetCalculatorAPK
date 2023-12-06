@@ -20,6 +20,7 @@ import org.json.JSONException;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,6 +31,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckedTextView;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -54,15 +56,8 @@ public class MainActivity extends AppCompatActivity {
     private CheckedTextView paldeanCheck;
     private CheckedTextView galarianCheck;
 
-
     private ArrayList<CheckedTextView>nameFilter = new ArrayList<>();
-
-
     List<HashMap<String, Object>> matchingPokemonList = new ArrayList<>();
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,8 +66,23 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         View rootView = findViewById(android.R.id.content);
 
-        matchingPokemonList = new ArrayList<>();
 
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+
+        matchingPokemonList = new ArrayList<>();
+        megaCheck =findViewById(R.id.megaBox);
+        alolanCheck = findViewById(R.id.alolanBox);
+        galarianCheck = findViewById(R.id.galarianBox);
+        hisuianCheck = findViewById(R.id.hisuianBox);
+        paldeanCheck = findViewById(R.id.paldeanBox);
+
+        nameFilter.add(megaCheck);
+        nameFilter.add(alolanCheck);
+        nameFilter.add(galarianCheck);
+        nameFilter.add(hisuianCheck);
+        nameFilter.add(paldeanCheck);
 
         // Replace "your_json_file" with the actual name of your JSON file without the file extension
 
@@ -102,8 +112,7 @@ public class MainActivity extends AppCompatActivity {
             for (int j = 0; j < abilitiesData.length(); j++) {
                 uniqueAbilities.add(abilitiesData.getString(j)); // Add to set to maintain uniqueness
             }
-
-
+            
             // Convert the Set back to a List for ArrayAdapter
             List<String> moveSuggestions = new ArrayList<>(uniqueMoveSuggestions);
             List<String> abilitySuggestions = new ArrayList<>(uniqueAbilities);
@@ -187,37 +196,50 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-            alolanCheck = findViewById(R.id.alolanBox);
-            galarianCheck = findViewById(R.id.galarianBox);
-            hisuianCheck = findViewById(R.id.hisuianBox);
-            paldeanCheck = findViewById(R.id.paldeanBox);
+            for (final CheckedTextView checkedTextView : nameFilter) {
+                // Use the CheckedTextView's ID as the key
+                final String key = "checkedTextView_" + checkedTextView.getId();
 
-            nameFilter.add(megaCheck);
-            nameFilter.add(alolanCheck);
-            nameFilter.add(galarianCheck);
-            nameFilter.add(hisuianCheck);
-            nameFilter.add(paldeanCheck);
+                // Retrieve the current state from SharedPreferences
+                final boolean savedState = sharedPreferences.getBoolean(key, false);
+
+                // Set the initial state of CheckedTextView
+                checkedTextView.setChecked(savedState);
+
+                // Add an OnClickListener to each CheckedTextView
+                checkedTextView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Toggle the state of the CheckedTextView
+                        boolean newState = !checkedTextView.isChecked();
+                        checkedTextView.setChecked(newState);
+
+                        // Update the state in SharedPreferences with the new state
+                        editor.putBoolean(key, newState);
+                        editor.apply();
+                    }
+                });
+            }
+
+
+
 
 
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
+
         }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Your code to perform actions when the activity is resumed or displayed
+        matchingPokemonList = new ArrayList<>();
+    }
+
+
     private void setAutoCompleteClickListener(AutoCompleteTextView autoCompleteTextView) {
-
-        megaCheck =findViewById(R.id.megaBox);
-        alolanCheck = findViewById(R.id.alolanBox);
-        galarianCheck = findViewById(R.id.galarianBox);
-        hisuianCheck = findViewById(R.id.hisuianBox);
-        paldeanCheck = findViewById(R.id.paldeanBox);
-
-        nameFilter.add(megaCheck);
-        nameFilter.add(alolanCheck);
-        nameFilter.add(galarianCheck);
-        nameFilter.add(hisuianCheck);
-        nameFilter.add(paldeanCheck);
-
         autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -226,19 +248,7 @@ public class MainActivity extends AppCompatActivity {
                 imm.hideSoftInputFromWindow(autoCompleteTextView.getWindowToken(), 0);
             }
         });
-        for (final CheckedTextView checkedTextView : nameFilter) {
-            checkedTextView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Toggle the checked state of the CheckedTextView
-                    if(checkedTextView.isChecked()){
-                        checkedTextView.setChecked(false);
-                    } else {
-                        checkedTextView.setChecked(true);
-                    }
-                }
-            });
-        }
+
 
 
     }
