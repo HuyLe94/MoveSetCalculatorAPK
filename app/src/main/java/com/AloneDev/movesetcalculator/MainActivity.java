@@ -11,18 +11,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
 import org.json.JSONObject;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONStringer;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.JsonReader;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -38,7 +41,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private JSONArray fullData;
+    private JSONObject fullData;
     private JSONArray abilitiesData;
     private JSONArray movesData;
     private JSONArray typesData;
@@ -86,14 +89,14 @@ public class MainActivity extends AppCompatActivity {
 
         // Replace "your_json_file" with the actual name of your JSON file without the file extension
 
-        String fullPokemonDetails = readJsonFile("alldata");
+        String fullPokemonDetails = readJsonFile("complete_data");
         String uniqueMovesList = readJsonFile("unique_moves");
         String uniqueTypesList = readJsonFile("unique_types");
         String uniqueAbilitiesList = readJsonFile("unique_abilities");
 
             // Parse JSON string to extract unique "moves" values
         try {
-            fullData = new JSONArray(fullPokemonDetails);
+            fullData = new JSONObject(fullPokemonDetails);
             typesData = new JSONArray(uniqueTypesList);
             movesData = new JSONArray(uniqueMovesList);
             abilitiesData = new JSONArray(uniqueAbilitiesList);
@@ -280,11 +283,17 @@ public class MainActivity extends AppCompatActivity {
         String speedConditionStr = speedNumberEditText.getText().toString().trim();
 
         try {
-            for (int i = 0; i < fullData.length(); i++) {
-                JSONObject pokemon = fullData.getJSONObject(i);
-                JSONArray moves = pokemon.getJSONArray("Moves");
-                JSONArray abilities = pokemon.getJSONArray("Abilities");
-                JSONArray types = pokemon.getJSONArray("Types");
+            for (Iterator<String> iterator = fullData.keys(); iterator.hasNext(); ) {
+                String pokemonName = iterator.next();
+                JSONObject pokemon = fullData.getJSONObject(pokemonName);
+                JSONArray moves = pokemon.getJSONArray("learnset");
+                JSONArray abilities = pokemon.getJSONArray("abilities");
+                JSONArray types = pokemon.getJSONArray("types");
+
+                //JSONArray moves = pokemon.getJSONArray("learnset");
+                //JSONArray abilities = pokemon.getJSONArray("abilities");
+                //JSONArray types = pokemon.getJSONArray("types");
+                String pokename = pokemon.getString("name");
 
                 boolean move1Found = false;
                 boolean move2Found = false;
@@ -343,19 +352,20 @@ public class MainActivity extends AppCompatActivity {
                     //matchingPokemonList.add(formattedEntry);
                     //HashMap<String, Object> pokemonDetails = new HashMap<>();
                     //pokemonDetails.put("id", pokemon.getInt("id"));
-                    String name = pokemon.getString("Name");
+                    //String name = pokemon.getString("Name");
+                    String name = pokename;
 
                     boolean namecheck= true;
                     for (final CheckedTextView checkedTextView : nameFilter) {
-                        Log.d("casesearch", "case1");
+                        //Log.d("casesearch", "case1");
                         // Check the initial state of the CheckedTextView
                         boolean isChecked = checkedTextView.isChecked();
                         String text = checkedTextView.getText().toString();
-                        Log.d("casesearch", "current form check = "+text);
+                        //Log.d("casesearch", "current form check = "+text);
 
                         // Perform actions based on the initial state and text
                         if (isChecked && name.contains(text)) {
-                            Log.d("casesearch", "current form check does contain this = "+text);
+                            //Log.d("casesearch", "current form check does contain this = "+text);
                             // Perform actions when initially checked and the text matches "YourString"
                             namecheck=false;
                         } else {
@@ -367,32 +377,32 @@ public class MainActivity extends AppCompatActivity {
                     }
 
 
-                    int hp = pokemon.getJSONObject("Stats").getInt("HP");
+                    int hp = pokemon.getJSONObject("baseStats").getInt("hp");
                     if(getStatCondition(hpConditionStr)!=-1 && getStatCondition(hpConditionStr)>hp){
                         continue;
                     }
 
-                    int attack = pokemon.getJSONObject("Stats").getInt("Attack");
+                    int attack = pokemon.getJSONObject("baseStats").getInt("atk");
                     if(getStatCondition(atkConditionStr)!=-1 && getStatCondition(atkConditionStr)>attack){
                         continue;
                     }
 
-                    int defense = pokemon.getJSONObject("Stats").getInt("Defense");
+                    int defense = pokemon.getJSONObject("baseStats").getInt("def");
                     if(getStatCondition(defConditionStr)!=-1 && getStatCondition(defConditionStr)>defense){
                         continue;
                     }
 
-                    int satk = pokemon.getJSONObject("Stats").getInt("Sp. Atk");
+                    int satk = pokemon.getJSONObject("baseStats").getInt("spa");
                     if(getStatCondition(satkConditionStr)!=-1 && getStatCondition(satkConditionStr)>satk){
                         continue;
                     }
 
-                    int sdef = pokemon.getJSONObject("Stats").getInt("Sp. Def");
+                    int sdef = pokemon.getJSONObject("baseStats").getInt("spd");
                     if(getStatCondition(sdefConditionStr)!=-1 && getStatCondition(sdefConditionStr)>sdef){
                         continue;
                     }
 
-                    int speed = pokemon.getJSONObject("Stats").getInt("Speed");
+                    int speed = pokemon.getJSONObject("baseStats").getInt("spe");
                     if(getStatCondition(speedConditionStr)!=-1 && getStatCondition(speedConditionStr)>speed){
                         continue;
                     }
