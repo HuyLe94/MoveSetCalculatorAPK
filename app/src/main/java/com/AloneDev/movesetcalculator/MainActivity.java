@@ -38,6 +38,12 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -59,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
     private CheckedTextView paldeanCheck;
     private CheckedTextView galarianCheck;
     private CheckedTextView gmaxCheck;
+    private AdView mAdView;
+    private AdView mAdView2;
 
     private ArrayList<CheckedTextView>nameFilter = new ArrayList<>();
     List<HashMap<String, Object>> matchingPokemonList = new ArrayList<>();
@@ -68,8 +76,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        View rootView = findViewById(android.R.id.content);
 
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+        mAdView2 = findViewById(R.id.adView2);
+        AdRequest adRequest2 = new AdRequest.Builder().build();
+        mAdView2.loadAd(adRequest);
+
+        View rootView = findViewById(android.R.id.content);
 
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -200,8 +222,6 @@ public class MainActivity extends AppCompatActivity {
             AutoCompleteTextView autoCompleteTextView6 = findViewById(R.id.type2); // Replace 'yourAutoCompleteTextView2' with the ID of the second AutoCompleteTextView
             setAutoCompleteClickListener(autoCompleteTextView6);
 
-
-
             for (final CheckedTextView checkedTextView : nameFilter) {
                 // Use the CheckedTextView's ID as the key
                 final String key = "checkedTextView_" + checkedTextView.getId();
@@ -226,17 +246,10 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
             }
-
-
-
-
-
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
-
         }
-
     @Override
     protected void onResume() {
         super.onResume();

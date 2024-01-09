@@ -7,23 +7,6 @@
     tools:context=".MainActivity">
 
 
-    <AutoCompleteTextView
-        android:id="@+id/FillAbility"
-        android:layout_width="270sp"
-        android:layout_height="25sp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="8dp"
-        android:backgroundTint="@android:color/transparent"
-        android:hint="Enter Ability Here"
-        android:inputType="text|textNoSuggestions|textFilter"
-        android:paddingTop="0sp"
-        android:paddingBottom="0sp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/Ability"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/satkLabel"
         android:layout_width="100sp"
@@ -37,24 +20,11 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/hpLabel" />
 
-    <TextView
-        android:id="@+id/Move2"
-        android:layout_width="100sp"
-        android:layout_height="25sp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Move 2"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Move1" />
-
     <AutoCompleteTextView
         android:id="@+id/FillMove4"
         android:layout_width="270sp"
         android:layout_height="25sp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
         android:backgroundTint="@android:color/transparent"
         android:hint="Enter Move Name Here"
@@ -67,11 +37,127 @@
         app:layout_constraintLeft_toRightOf="@id/Move4"
         app:layout_constraintTop_toBottomOf="@id/FillMove3" />
 
+    <TextView
+        android:id="@+id/Move3"
+        android:layout_width="100sp"
+        android:layout_height="25sp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="4dp"
+        android:text="Move 3"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Move2" />
+
+    <TextView
+        android:id="@+id/Move4"
+        android:layout_width="100sp"
+        android:layout_height="25sp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="4dp"
+        android:text="Move 4"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Move3" />
+
+    <AutoCompleteTextView
+        android:id="@+id/FillMove2"
+        android:layout_width="270sp"
+        android:layout_height="25sp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="@android:color/transparent"
+        android:hint="Enter Move Name Here"
+        android:inputType="text|textNoSuggestions|textFilter"
+        android:paddingTop="0sp"
+        android:paddingBottom="0sp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/Move2"
+        app:layout_constraintTop_toBottomOf="@id/FillMove1" />
+
+    <TextView
+        android:id="@+id/Move1"
+        android:layout_width="100sp"
+        android:layout_height="25sp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="4dp"
+        android:text="Move 1"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Ability" />
+
+    <TextView
+        android:id="@+id/Ability"
+        android:layout_width="100sp"
+        android:layout_height="25sp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Ability"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Move2"
+        android:layout_width="100sp"
+        android:layout_height="25sp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="4dp"
+        android:text="Move 2"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Move1" />
+
+    <AutoCompleteTextView
+        android:id="@+id/FillMove3"
+        android:layout_width="270sp"
+        android:layout_height="25sp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="@android:color/transparent"
+        android:hint="Enter Move Name Here"
+        android:inputType="text|textNoSuggestions|textFilter"
+        android:paddingTop="0sp"
+        android:paddingBottom="0sp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/Move3"
+        app:layout_constraintTop_toBottomOf="@id/FillMove2" />
+
+    <AutoCompleteTextView
+        android:id="@+id/FillAbility"
+        android:layout_width="270sp"
+        android:layout_height="25sp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="@android:color/transparent"
+        android:hint="Enter Ability Here"
+        android:inputType="text|textNoSuggestions|textFilter"
+        android:paddingTop="0sp"
+        android:paddingBottom="0sp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/Ability"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <AutoCompleteTextView
         android:id="@+id/FillMove1"
         android:layout_width="270sp"
         android:layout_height="25sp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
         android:backgroundTint="@android:color/transparent"
         android:hint="Enter Move Name Here"
@@ -119,7 +205,7 @@
         android:layout_width="100dp"
         android:layout_height="35dp"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="@android:color/transparent"
         android:ems="10"
         android:hint="DEF #"
@@ -130,6 +216,79 @@
         android:textSize="20sp"
         app:layout_constraintLeft_toRightOf="@id/atkNumber"
         app:layout_constraintTop_toBottomOf="@id/defLabel" />
+
+    <TextView
+        android:id="@+id/hpLabel"
+        android:layout_width="100sp"
+        android:layout_height="25sp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="16dp"
+        android:text="HP"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Move4" />
+
+    <EditText
+        android:id="@+id/atkNumber"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@android:color/transparent"
+        android:ems="10"
+        android:hint="ATK #"
+        android:inputType="number"
+        android:paddingTop="0sp"
+        android:paddingBottom="0sp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toRightOf="@id/hpNumber"
+        app:layout_constraintTop_toBottomOf="@id/atkLabel" />
+
+    <TextView
+        android:id="@+id/atkLabel"
+        android:layout_width="100sp"
+        android:layout_height="25sp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="16dp"
+        android:text="ATK"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@id/hpLabel"
+        app:layout_constraintTop_toBottomOf="@id/Move4" />
+
+    <EditText
+        android:id="@+id/hpNumber"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@android:color/transparent"
+        android:ems="10"
+        android:hint="HP #"
+        android:inputType="number"
+        android:paddingTop="0sp"
+        android:paddingBottom="0sp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/hpLabel" />
+
+    <TextView
+        android:id="@+id/defLabel"
+        android:layout_width="100sp"
+        android:layout_height="25sp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="16dp"
+        android:text="DEF"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@id/atkLabel"
+        app:layout_constraintTop_toBottomOf="@id/Move4" />
 
     <TextView
         android:id="@+id/sdefLabel"
@@ -145,70 +304,10 @@
         app:layout_constraintTop_toBottomOf="@id/atkLabel" />
 
     <EditText
-        android:id="@+id/hpNumber"
-        android:layout_width="100dp"
-        android:layout_height="35dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="4dp"
-        android:backgroundTint="@android:color/transparent"
-        android:ems="10"
-        android:hint="HP #"
-        android:inputType="number"
-        android:paddingTop="0sp"
-        android:paddingBottom="0sp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/hpLabel" />
-
-    <TextView
-        android:id="@+id/atkLabel"
-        android:layout_width="100sp"
-        android:layout_height="25sp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="28dp"
-        android:text="ATK"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@id/hpLabel"
-        app:layout_constraintTop_toBottomOf="@id/Move4" />
-
-    <EditText
-        android:id="@+id/atkNumber"
-        android:layout_width="100dp"
-        android:layout_height="35dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="4dp"
-        android:backgroundTint="@android:color/transparent"
-        android:ems="10"
-        android:hint="ATK #"
-        android:inputType="number"
-        android:paddingTop="0sp"
-        android:paddingBottom="0sp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toRightOf="@id/hpNumber"
-        app:layout_constraintTop_toBottomOf="@id/atkLabel" />
-
-    <TextView
-        android:id="@+id/Move4"
-        android:layout_width="100sp"
-        android:layout_height="25sp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Move 4"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Move3" />
-
-    <EditText
         android:id="@+id/sdefNumber"
         android:layout_width="100dp"
         android:layout_height="35dp"
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="36dp"
         android:layout_marginTop="4dp"
         android:backgroundTint="@android:color/transparent"
         android:ems="10"
@@ -220,62 +319,6 @@
         android:textSize="20sp"
         app:layout_constraintLeft_toRightOf="@id/satkNumber"
         app:layout_constraintTop_toBottomOf="@id/sdefLabel" />
-
-    <AutoCompleteTextView
-        android:id="@+id/FillMove2"
-        android:layout_width="270sp"
-        android:layout_height="25sp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:backgroundTint="@android:color/transparent"
-        android:hint="Enter Move Name Here"
-        android:inputType="text|textNoSuggestions|textFilter"
-        android:paddingTop="0sp"
-        android:paddingBottom="0sp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/Move2"
-        app:layout_constraintTop_toBottomOf="@id/FillMove1" />
-
-    <TextView
-        android:id="@+id/defLabel"
-        android:layout_width="100sp"
-        android:layout_height="25sp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="28dp"
-        android:text="DEF"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@id/atkLabel"
-        app:layout_constraintTop_toBottomOf="@id/Move4" />
-
-    <TextView
-        android:id="@+id/Ability"
-        android:layout_width="100sp"
-        android:layout_height="25sp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="44dp"
-        android:text="Ability"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/hpLabel"
-        android:layout_width="100sp"
-        android:layout_height="25sp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="28dp"
-        android:text="HP"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Move4" />
 
     <EditText
         android:id="@+id/satkNumber"
@@ -293,49 +336,6 @@
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/satkLabel" />
-
-    <TextView
-        android:id="@+id/Move3"
-        android:layout_width="100sp"
-        android:layout_height="25sp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Move 3"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Move2" />
-
-    <TextView
-        android:id="@+id/Move1"
-        android:layout_width="100sp"
-        android:layout_height="25sp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Move 1"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Ability" />
-
-    <AutoCompleteTextView
-        android:id="@+id/FillMove3"
-        android:layout_width="270sp"
-        android:layout_height="25sp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:backgroundTint="@android:color/transparent"
-        android:hint="Enter Move Name Here"
-        android:inputType="text|textNoSuggestions|textFilter"
-        android:paddingTop="0sp"
-        android:paddingBottom="0sp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/Move3"
-        app:layout_constraintTop_toBottomOf="@id/FillMove2" />
 
     <AutoCompleteTextView
         android:id="@+id/type2"
@@ -485,5 +485,43 @@
 
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/startSearch" />
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginBottom="17dp"
+        app:adSize="BANNER"
+        app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/galarianBox"
+        app:layout_constraintVertical_bias="1.0"></com.google.android.gms.ads.AdView>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginBottom="17dp"
+        app:adSize="BANNER"
+        app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/galarianBox"
+        app:layout_constraintVertical_bias="0.0"></com.google.android.gms.ads.AdView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
