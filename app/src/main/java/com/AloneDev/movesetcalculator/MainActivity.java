@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     private CheckedTextView hisuianCheck;
     private CheckedTextView paldeanCheck;
     private CheckedTextView galarianCheck;
+    private CheckedTextView gmaxCheck;
 
     private ArrayList<CheckedTextView>nameFilter = new ArrayList<>();
     List<HashMap<String, Object>> matchingPokemonList = new ArrayList<>();
@@ -80,12 +81,14 @@ public class MainActivity extends AppCompatActivity {
         galarianCheck = findViewById(R.id.galarianBox);
         hisuianCheck = findViewById(R.id.hisuianBox);
         paldeanCheck = findViewById(R.id.paldeanBox);
+        gmaxCheck = findViewById(R.id.gmaxBox);
 
         nameFilter.add(megaCheck);
         nameFilter.add(alolanCheck);
         nameFilter.add(galarianCheck);
         nameFilter.add(hisuianCheck);
         nameFilter.add(paldeanCheck);
+        nameFilter.add(gmaxCheck);
 
         // Replace "your_json_file" with the actual name of your JSON file without the file extension
 
