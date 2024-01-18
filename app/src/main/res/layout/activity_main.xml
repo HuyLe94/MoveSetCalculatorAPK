@@ -6,527 +6,498 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
-    <TextView
-        android:id="@+id/satkLabel"
-        android:layout_width="100sp"
-        android:layout_height="25sp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="60dp"
-        android:text="S.ATK"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/hpLabel" />
-
-    <AutoCompleteTextView
-        android:id="@+id/FillMove4"
-        android:layout_width="270sp"
-        android:layout_height="25sp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp"
-        android:backgroundTint="@android:color/transparent"
-        android:hint="Enter Move Name Here"
-        android:inputType="text|textNoSuggestions|textFilter"
-        android:paddingTop="0sp"
-        android:paddingBottom="0sp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/Move4"
-        app:layout_constraintTop_toBottomOf="@id/FillMove3" />
-
-    <TextView
-        android:id="@+id/Move3"
-        android:layout_width="100sp"
-        android:layout_height="25sp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="4dp"
-        android:text="Move 3"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Move2" />
-
-    <TextView
-        android:id="@+id/Move4"
-        android:layout_width="100sp"
-        android:layout_height="25sp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="4dp"
-        android:text="Move 4"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Move3" />
-
-    <AutoCompleteTextView
-        android:id="@+id/FillMove2"
-        android:layout_width="270sp"
-        android:layout_height="25sp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp"
-        android:backgroundTint="@android:color/transparent"
-        android:hint="Enter Move Name Here"
-        android:inputType="text|textNoSuggestions|textFilter"
-        android:paddingTop="0sp"
-        android:paddingBottom="0sp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/Move2"
-        app:layout_constraintTop_toBottomOf="@id/FillMove1" />
-
-    <TextView
-        android:id="@+id/Move1"
-        android:layout_width="100sp"
-        android:layout_height="25sp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="4dp"
-        android:text="Move 1"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Ability" />
-
-    <TextView
-        android:id="@+id/Ability"
-        android:layout_width="100sp"
-        android:layout_height="25sp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        android:text="Ability"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/Move2"
-        android:layout_width="100sp"
-        android:layout_height="25sp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="4dp"
-        android:text="Move 2"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Move1" />
-
-    <AutoCompleteTextView
-        android:id="@+id/FillMove3"
-        android:layout_width="270sp"
-        android:layout_height="25sp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp"
-        android:backgroundTint="@android:color/transparent"
-        android:hint="Enter Move Name Here"
-        android:inputType="text|textNoSuggestions|textFilter"
-        android:paddingTop="0sp"
-        android:paddingBottom="0sp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/Move3"
-        app:layout_constraintTop_toBottomOf="@id/FillMove2" />
-
-    <AutoCompleteTextView
-        android:id="@+id/FillAbility"
-        android:layout_width="270sp"
-        android:layout_height="25sp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:backgroundTint="@android:color/transparent"
-        android:hint="Enter Ability Here"
-        android:inputType="text|textNoSuggestions|textFilter"
-        android:paddingTop="0sp"
-        android:paddingBottom="0sp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/Ability"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <AutoCompleteTextView
-        android:id="@+id/FillMove1"
-        android:layout_width="270sp"
-        android:layout_height="25sp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp"
-        android:backgroundTint="@android:color/transparent"
-        android:hint="Enter Move Name Here"
-        android:inputType="text|textNoSuggestions|textFilter"
-        android:paddingTop="0sp"
-        android:paddingBottom="0sp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/Move1"
-        app:layout_constraintTop_toBottomOf="@id/FillAbility" />
-
-    <TextView
-        android:id="@+id/speedLabel"
-        android:layout_width="100sp"
-        android:layout_height="25sp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="60dp"
-        android:text="SPEED"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@id/sdefLabel"
-        app:layout_constraintTop_toBottomOf="@id/defLabel" />
-
-    <EditText
-        android:id="@+id/speedNumber"
-        android:layout_width="100dp"
-        android:layout_height="35dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="4dp"
-        android:backgroundTint="@android:color/transparent"
-        android:ems="10"
-        android:hint="SPEED #"
-        android:inputType="number"
-        android:paddingTop="0sp"
-        android:paddingBottom="0sp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toRightOf="@id/sdefNumber"
-        app:layout_constraintTop_toBottomOf="@id/speedLabel" />
-
-    <EditText
-        android:id="@+id/defNumber"
-        android:layout_width="100dp"
-        android:layout_height="35dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="@android:color/transparent"
-        android:ems="10"
-        android:hint="DEF #"
-        android:inputType="number"
-        android:paddingTop="0sp"
-        android:paddingBottom="0sp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toRightOf="@id/atkNumber"
-        app:layout_constraintTop_toBottomOf="@id/defLabel" />
-
-    <TextView
-        android:id="@+id/hpLabel"
-        android:layout_width="100sp"
-        android:layout_height="25sp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="16dp"
-        android:text="HP"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Move4" />
-
-    <EditText
-        android:id="@+id/atkNumber"
-        android:layout_width="100dp"
-        android:layout_height="35dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="@android:color/transparent"
-        android:ems="10"
-        android:hint="ATK #"
-        android:inputType="number"
-        android:paddingTop="0sp"
-        android:paddingBottom="0sp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toRightOf="@id/hpNumber"
-        app:layout_constraintTop_toBottomOf="@id/atkLabel" />
-
-    <TextView
-        android:id="@+id/atkLabel"
-        android:layout_width="100sp"
-        android:layout_height="25sp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="16dp"
-        android:text="ATK"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@id/hpLabel"
-        app:layout_constraintTop_toBottomOf="@id/Move4" />
-
-    <EditText
-        android:id="@+id/hpNumber"
-        android:layout_width="100dp"
-        android:layout_height="35dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="@android:color/transparent"
-        android:ems="10"
-        android:hint="HP #"
-        android:inputType="number"
-        android:paddingTop="0sp"
-        android:paddingBottom="0sp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/hpLabel" />
-
-    <TextView
-        android:id="@+id/defLabel"
-        android:layout_width="100sp"
-        android:layout_height="25sp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="16dp"
-        android:text="DEF"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@id/atkLabel"
-        app:layout_constraintTop_toBottomOf="@id/Move4" />
-
-    <TextView
-        android:id="@+id/sdefLabel"
-        android:layout_width="100sp"
-        android:layout_height="25sp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="60dp"
-        android:text="S.DEF"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@id/hpLabel"
-        app:layout_constraintTop_toBottomOf="@id/atkLabel" />
-
-    <EditText
-        android:id="@+id/sdefNumber"
-        android:layout_width="100dp"
-        android:layout_height="35dp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginTop="4dp"
-        android:backgroundTint="@android:color/transparent"
-        android:ems="10"
-        android:hint="S.DEF #"
-        android:inputType="number"
-        android:paddingTop="0sp"
-        android:paddingBottom="0sp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toRightOf="@id/satkNumber"
-        app:layout_constraintTop_toBottomOf="@id/sdefLabel" />
-
-    <EditText
-        android:id="@+id/satkNumber"
-        android:layout_width="100dp"
-        android:layout_height="35dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="4dp"
-        android:backgroundTint="@android:color/transparent"
-        android:ems="10"
-        android:hint="S.ATK #"
-        android:inputType="number"
-        android:paddingTop="0sp"
-        android:paddingBottom="0sp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/satkLabel" />
-
-    <AutoCompleteTextView
-        android:id="@+id/type2"
-        android:layout_width="100dp"
-        android:layout_height="25sp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="72dp"
-        android:backgroundTint="@android:color/transparent"
-        android:hint="Type 2"
-        android:inputType="text|textNoSuggestions|textFilter"
-        android:paddingTop="0sp"
-        android:paddingBottom="0sp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/type1"
-        app:layout_constraintTop_toBottomOf="@id/satkNumber" />
-
-    <AutoCompleteTextView
-        android:id="@+id/type1"
-        android:layout_width="100dp"
-        android:layout_height="25sp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="216dp"
-        android:backgroundTint="@android:color/transparent"
-        android:hint="Type 1"
-        android:inputType="text|textNoSuggestions|textFilter"
-        android:paddingTop="0sp"
-        android:paddingBottom="0sp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/satkNumber" />
-
-    <Button
-        android:id="@+id/startSearch"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/filterLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="68dp"
-        android:onClick="updateList"
-        android:text="Search"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sdefNumber" />
+        android:layout_weight="1"
+        app:layout_constraintBottom_toTopOf="@id/ad_holder2"
+        app:layout_constraintTop_toBottomOf="@id/ad_holder1"
+        >
+        <TextView
+            android:id="@+id/Ability"
+            android:layout_width="100sp"
+            android:layout_height="25sp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="10dp"
+            android:text="Ability"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <AutoCompleteTextView
+            android:id="@+id/FillAbility"
+            android:layout_width="270sp"
+            android:layout_height="25sp"
+            android:layout_alignTop="@id/Ability"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:layout_toEndOf="@id/Ability"
+            android:backgroundTint="@android:color/transparent"
+            android:hint="Enter Ability Here"
+            android:inputType="text|textNoSuggestions|textFilter"
+            android:paddingTop="0sp"
+            android:paddingBottom="0sp"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/Move1"
+            android:layout_width="100sp"
+            android:layout_height="25sp"
+            android:layout_below="@+id/Ability"
+            android:layout_alignStart="@+id/Ability"
+            android:text="Move 1"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"/>
+
+        <AutoCompleteTextView
+            android:id="@+id/FillMove1"
+            android:layout_width="270sp"
+            android:layout_height="25sp"
+            android:layout_alignTop="@id/Move1"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:layout_toEndOf="@id/Move2"
+            android:backgroundTint="@android:color/transparent"
+            android:hint="Enter Move Here"
+            android:inputType="text|textNoSuggestions|textFilter"
+            android:paddingTop="0sp"
+            android:paddingBottom="0sp"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/Move2"
+            android:layout_width="100sp"
+            android:layout_height="25sp"
+            android:layout_below="@+id/Move1"
+            android:layout_alignStart="@+id/Move1"
+            android:text="Move 2"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            />
+
+        <AutoCompleteTextView
+            android:id="@+id/FillMove2"
+            android:layout_width="270sp"
+            android:layout_height="25sp"
+            android:layout_alignTop="@id/Move2"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:layout_toEndOf="@id/Move2"
+            android:backgroundTint="@android:color/transparent"
+            android:hint="Enter Move Here"
+            android:inputType="text|textNoSuggestions|textFilter"
+            android:paddingTop="0sp"
+            android:paddingBottom="0sp"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/Move3"
+            android:layout_width="100sp"
+            android:layout_height="25sp"
+            android:layout_below="@+id/Move2"
+            android:layout_alignStart="@+id/Move2"
+            android:text="Move 3"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"/>
+
+        <AutoCompleteTextView
+            android:id="@+id/FillMove3"
+            android:layout_width="270sp"
+            android:layout_height="25sp"
+            android:layout_alignTop="@id/Move3"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:layout_toEndOf="@id/Move3"
+            android:backgroundTint="@android:color/transparent"
+            android:hint="Enter Move Here"
+            android:inputType="text|textNoSuggestions|textFilter"
+            android:paddingTop="0sp"
+            android:paddingBottom="0sp"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/Move4"
+            android:layout_width="100sp"
+            android:layout_height="25sp"
+            android:layout_below="@+id/Move3"
+            android:layout_alignStart="@+id/Move3"
+            android:text="Move 4"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"/>
+
+        <AutoCompleteTextView
+            android:id="@+id/FillMove4"
+            android:layout_width="270sp"
+            android:layout_height="25sp"
+            android:layout_alignTop="@id/Move4"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:layout_toEndOf="@id/Move4"
+            android:backgroundTint="@android:color/transparent"
+            android:hint="Enter Move Here"
+            android:inputType="text|textNoSuggestions|textFilter"
+            android:paddingTop="0sp"
+            android:paddingBottom="0sp"
+            android:textAlignment="center"
+            android:textSize="20sp" />
 
 
-    <CheckedTextView
-        android:id="@+id/hisuianBox"
-        android:layout_width="wrap_content"
-        android:layout_height="32dp"
-        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
-        android:checked="false"
-        android:gravity="center"
-        android:text="Hisui"
-        android:textSize="22dp"
-        android:layout_marginTop="14dp"
-        app:layout_constraintTop_toBottomOf="@+id/excludeText"
-        android:layout_marginLeft="15dp"
-        app:layout_constraintLeft_toRightOf="@+id/alolanBox"
-        tools:layout_editor_absoluteX="246dp"
-        tools:layout_editor_absoluteY="552dp" />
+        <TextView
+            android:id="@+id/hpLabel"
+            android:layout_width="100sp"
+            android:layout_height="25sp"
+            android:layout_below="@+id/Move4"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="20dp"
+            android:text="HP"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-    <CheckedTextView
-        android:id="@+id/galarianBox"
-        android:layout_width="wrap_content"
-        android:layout_height="32dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
-        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
-        android:checked="false"
-        android:gravity="center"
-        android:text="Galar"
-        android:textSize="22dp"
-        app:layout_constraintLeft_toRightOf="@+id/paldeanBox"
-        app:layout_constraintTop_toBottomOf="@+id/megaBox" />
+        <EditText
+            android:id="@+id/hpNumber"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/hpLabel"
+            android:layout_alignParentStart="true"
+            android:backgroundTint="@android:color/transparent"
+            android:ems="10"
+            android:hint="HP #"
+            android:inputType="number"
+            android:paddingTop="0sp"
+            android:paddingBottom="0sp"
+            android:textAlignment="center"
+            android:textSize="20sp" />
 
-    <CheckedTextView
-        android:id="@+id/paldeanBox"
-        android:layout_width="wrap_content"
-        android:layout_height="32dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="8dp"
-        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
-        android:checked="false"
-        android:gravity="center"
-        android:text="Paldea"
-        android:textSize="22dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/megaBox" />
+        <TextView
+            android:id="@+id/atkLabel"
+            android:layout_width="100sp"
+            android:layout_height="25sp"
+            android:layout_below="@id/Move4"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="ATK"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-    <CheckedTextView
-        android:id="@+id/alolanBox"
-        android:layout_width="wrap_content"
-        android:layout_height="32dp"
-        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
-        android:checked="false"
-        android:gravity="center"
-        android:text="Alola"
-        android:textSize="22dp"
-        android:layout_marginTop="14dp"
-        app:layout_constraintTop_toBottomOf="@+id/excludeText"
-        android:layout_marginLeft="15dp"
-        app:layout_constraintLeft_toRightOf="@+id/megaBox"
-        />
+        <EditText
+            android:id="@+id/atkNumber"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/atkLabel"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="@android:color/transparent"
+            android:ems="10"
+            android:hint="ATK #"
+            android:inputType="number"
+            android:paddingTop="0sp"
+            android:paddingBottom="0sp"
+            android:textAlignment="center"
+            android:textSize="20sp" />
 
-    <CheckedTextView
-        android:id="@+id/megaBox"
-        android:layout_width="wrap_content"
-        android:layout_height="32dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="14dp"
-        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
-        android:checked="false"
-        android:gravity="center"
-        android:text="Mega"
-        android:textSize="22dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/excludeText" />
+        <TextView
+            android:id="@+id/defLabel"
+            android:layout_width="100sp"
+            android:layout_height="25sp"
+            android:layout_below="@id/Move4"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="20dp"
+            android:text="DEF"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-    <CheckedTextView
-        android:id="@+id/gmaxBox"
-        android:layout_width="wrap_content"
-        android:layout_height="32dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
-        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
-        android:checked="false"
-        android:gravity="center"
-        android:text="Gmax"
-        android:textSize="22dp"
-        app:layout_constraintLeft_toRightOf="@+id/galarianBox"
-        app:layout_constraintTop_toBottomOf="@+id/megaBox" />
+        <EditText
+            android:id="@+id/defNumber"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/atkLabel"
+            android:layout_alignParentRight="true"
+            android:backgroundTint="@android:color/transparent"
+            android:ems="10"
+            android:hint="DEF #"
+            android:inputType="number"
+            android:paddingTop="0sp"
+            android:paddingBottom="0sp"
+            android:textAlignment="center"
+            android:textSize="20sp" />
 
-    <TextView
-        android:layout_width="86dp"
-        android:layout_height="28dp"
-        android:layout_marginLeft="160dp"
-        android:layout_marginTop="16dp"
-        android:id="@+id/excludeText"
-        android:gravity="center"
-        android:text="Exclude"
-        android:textSize="22sp"
-        android:textStyle="bold"
+        <TextView
+            android:id="@+id/satkLabel"
+            android:layout_width="100sp"
+            android:layout_height="25sp"
+            android:layout_below="@+id/hpNumber"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="20dp"
+            android:text="S.ATK"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startSearch" />
+        <EditText
+            android:id="@+id/satkNumber"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/satkLabel"
+            android:layout_alignParentStart="true"
+            android:backgroundTint="@android:color/transparent"
+            android:ems="10"
+            android:hint="S.ATK #"
+            android:inputType="number"
+            android:paddingTop="0sp"
+            android:paddingBottom="0sp"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/sdefLabel"
+            android:layout_width="100sp"
+            android:layout_height="25sp"
+            android:layout_below="@id/atkNumber"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="S.DEF"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/sdefNumber"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/sdefLabel"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="@android:color/transparent"
+            android:ems="10"
+            android:hint="S.DEF #"
+            android:inputType="number"
+            android:paddingTop="0sp"
+            android:paddingBottom="0sp"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/speedLabel"
+            android:layout_width="100sp"
+            android:layout_height="25sp"
+            android:layout_below="@id/defNumber"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="20dp"
+            android:text="SPEED"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/speedNumber"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/speedLabel"
+            android:layout_alignParentRight="true"
+            android:backgroundTint="@android:color/transparent"
+            android:ems="10"
+            android:hint="SPEED #"
+            android:inputType="number"
+            android:paddingTop="0sp"
+            android:paddingBottom="0sp"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:id="@+id/typesLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/satkNumber"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <AutoCompleteTextView
+                android:id="@+id/type1"
+                android:layout_width="100dp"
+                android:layout_height="25sp"
+                android:layout_marginEnd="30dp"
+                android:backgroundTint="@android:color/transparent"
+                android:hint="Type 1"
+                android:inputType="text|textNoSuggestions|textFilter"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <AutoCompleteTextView
+                android:id="@+id/type2"
+                android:layout_width="100dp"
+                android:layout_height="25sp"
+                android:backgroundTint="@android:color/transparent"
+                android:hint="Type 2"
+                android:inputType="text|textNoSuggestions|textFilter"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold"
+
+                />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/startSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/typesLayout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:onClick="updateList"
+            android:text="Search" />
+
+        <TextView
+            android:id="@+id/excludeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/startSearch"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="Exclude Forms"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <CheckedTextView
+            android:id="@+id/megaBox"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_below="@id/excludeText"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+            android:checked="false"
+            android:gravity="center"
+            android:text="Mega"
+            android:textSize="22dp"
+            android:layout_marginTop="20dp"/>
+
+        <CheckedTextView
+            android:id="@+id/alolanBox"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_below="@id/excludeText"
+            android:layout_centerHorizontal="true"
+            android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+            android:checked="false"
+            android:gravity="center"
+            android:text="Alola"
+            android:textSize="22dp"
+            android:layout_marginTop="20dp"/>
+
+        <CheckedTextView
+            android:id="@+id/hisuianBox"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_below="@id/excludeText"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="10dp"
+            android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+            android:checked="false"
+            android:gravity="center"
+            android:text="Hisui"
+            android:textSize="22dp"
+            android:layout_marginTop="20dp"/>
+
+        <CheckedTextView
+            android:id="@+id/paldeanBox"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_below="@id/megaBox"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+            android:checked="false"
+            android:gravity="center"
+            android:text="Paldea"
+            android:textSize="22dp"
+            android:layout_marginTop="10dp"/>
+
+        <CheckedTextView
+            android:id="@+id/galarianBox"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_below="@id/alolanBox"
+            android:layout_centerHorizontal="true"
+            android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+            android:checked="false"
+            android:gravity="center"
+            android:text="Galar"
+            android:textSize="22dp"
+            android:layout_marginTop="10dp"/>
+
+        <CheckedTextView
+            android:id="@+id/gmaxBox"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_below="@id/hisuianBox"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="11dp"
+            android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+            android:checked="false"
+            android:gravity="center"
+            android:text="Gmax"
+            android:textSize="22dp"
+            android:layout_marginTop="10dp"/>
+    </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/ad_holder"
+        android:id="@+id/ad_holder1"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_alignParentBottom="true"
-        android:gravity="bottom"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="637dp">
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        >
 
         <com.google.android.gms.ads.AdView
             android:id="@+id/adView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginStart="36dp"
-            android:layout_marginEnd="37dp"
-            android:layout_marginBottom="48dp"
             app:adSize="BANNER"
-            app:adUnitId="ca-app-pub-3940256099942544/6300978111"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
+            app:adUnitId="ca-app-pub-7333155271230991/6599534493"
             app:layout_constraintVertical_bias="0.982"></com.google.android.gms.ads.AdView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/ad_holder2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
 
         <com.google.android.gms.ads.AdView
             android:id="@+id/adView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             app:adSize="BANNER"
-            app:adUnitId="ca-app-pub-3940256099942544/6300978111"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/adView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintVertical_bias="0.0"></com.google.android.gms.ads.AdView>
+            app:adUnitId="ca-app-pub-7333155271230991/6599534493"
+            app:layout_constraintVertical_bias="0.982"></com.google.android.gms.ads.AdView>
 
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
