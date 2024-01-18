@@ -12,7 +12,7 @@
             android:id="@+id/tableLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="50dp"
             app:layout_constraintTop_toTopOf="parent"
             android:padding="8dp"
@@ -29,10 +29,9 @@
                     android:id="@+id/nameCol"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:paddingRight="10sp"
+                    android:layout_weight="2.5"
                     android:text="Name"
-                    android:textAlignment="textStart"
+                    android:textAlignment="center"
                     android:textStyle="bold" />
 
 
@@ -42,7 +41,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="HP"
-                    android:textAlignment="textStart"
+                    android:textAlignment="center"
                     android:textStyle="bold" />
 
                 <TextView
@@ -51,7 +50,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="ATK"
-                    android:textAlignment="textStart"
+                    android:textAlignment="center"
                     android:textStyle="bold" />
 
                 <TextView
@@ -60,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="DEF"
-                    android:textAlignment="textStart"
+                    android:textAlignment="center"
                     android:textStyle="bold" />
 
                 <TextView
@@ -69,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="S.ATK"
-                    android:textAlignment="textStart"
+                    android:textAlignment="center"
                     android:textStyle="bold" />
 
                 <TextView
@@ -78,7 +77,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="S.DEF"
-                    android:textAlignment="textStart"
+                    android:textAlignment="center"
                     android:textStyle="bold" />
 
                 <TextView
@@ -87,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Spd"
-                    android:textAlignment="textStart"
+                    android:textAlignment="center"
                     android:textStyle="bold" />
 
 
@@ -102,12 +101,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="60dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="60dp"
         app:layout_constraintBottom_toTopOf="@+id/goBackButton"
         app:layout_constraintTop_toBottomOf="@+id/tableLayout"
-        app:layout_constraintVertical_bias="0.565"
-        tools:layout_editor_absoluteX="0dp"
-        app:layout_goneMarginEnd="10dp">
+        >
 
         <TableLayout
             android:id="@+id/tableLayout2"
@@ -124,7 +121,7 @@
 
     <ImageButton
         android:id="@+id/goBackButton"
-        android:layout_width="70dp"
+        android:layout_width="60dp"
         android:layout_height="50dp"
         android:onClick="GoBack"
         app:srcCompat="@drawable/arrow_back"
