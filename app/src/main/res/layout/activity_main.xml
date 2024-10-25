@@ -364,10 +364,43 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/typesLayout"
-                android:layout_centerHorizontal="true"
+                android:layout_alignParentEnd="true"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="30dp"
                 android:onClick="updateList"
                 android:text="Search" />
+
+            <Button
+                android:id="@+id/updateData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/typesLayout"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="#1C49BC"
+                android:onClick="updateList"
+                android:text="Update"
+                android:textColor="#FFFFFF"
+                android:textColorHighlight="#7A1E1E"
+                android:textColorLink="#D51D1D"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/deleteData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/typesLayout"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="#1C49BC"
+                android:onClick="updateList"
+                android:text="Delete"
+                android:textColor="#FFFFFF"
+                android:textColorHighlight="#7A1E1E"
+                android:textColorLink="#D51D1D"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/excludeText"

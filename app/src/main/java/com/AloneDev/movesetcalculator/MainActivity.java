@@ -3,6 +3,10 @@ package com.AloneDev.movesetcalculator;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -18,14 +22,14 @@ import java.util.Set;
 import org.json.JSONObject;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONStringer;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.util.JsonReader;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -34,16 +38,19 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckedTextView;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
-
+import android.os.Handler;
+import android.os.Looper;
+import java.util.concurrent.atomic.AtomicBoolean;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -71,11 +78,48 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<CheckedTextView>nameFilter = new ArrayList<>();
     List<HashMap<String, Object>> matchingPokemonList = new ArrayList<>();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+
+        Button updateButton = findViewById(R.id.updateData);
+        updateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                downloadJsonFiles();
+            }
+        });
+
+        Button deleteButton = findViewById(R.id.deleteData);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteFiles();
+            }
+        });
+
+        Button startSearchButton = findViewById(R.id.startSearch);
+        startSearchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateList();
+
+                // Create an Intent to start Page2Activity
+                Intent intent = new Intent(MainActivity.this, ResultTable.class);
+                intent.putExtra("matchingPokemonList", (Serializable) matchingPokemonList);
+
+                // Start Page2Activity
+                startActivity(intent);
+            }
+        });
+
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
@@ -90,12 +134,6 @@ public class MainActivity extends AppCompatActivity {
         mAdView2 = findViewById(R.id.adView2);
         AdRequest adRequest2 = new AdRequest.Builder().build();
         mAdView2.loadAd(adRequest);
-
-        View rootView = findViewById(android.R.id.content);
-
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
 
         matchingPokemonList = new ArrayList<>();
         megaCheck =findViewById(R.id.megaBox);
@@ -112,15 +150,30 @@ public class MainActivity extends AppCompatActivity {
         nameFilter.add(paldeanCheck);
         nameFilter.add(gmaxCheck);
 
-        // Replace "your_json_file" with the actual name of your JSON file without the file extension
+        //checkAndLoadData();
 
-        String fullPokemonDetails = readJsonFile("complete_data");
-        String uniqueMovesList = readJsonFile("unique_moves");
-        String uniqueTypesList = readJsonFile("unique_types");
-        String uniqueAbilitiesList = readJsonFile("unique_abilities");
+        String fullPokemonDetails="";
+        String uniqueMovesList="";
+        String uniqueTypesList="";
+        String uniqueAbilitiesList="";
 
-            // Parse JSON string to extract unique "moves" values
+        //Parse JSON string to extract unique "moves" values
+        if(!areFilesAvailable()) {
+            Toast.makeText(this, "Press Update to get the latest data", Toast.LENGTH_LONG).show();
+            fullPokemonDetails = readJsonFileFromRaw("complete_data");
+            uniqueMovesList = readJsonFileFromRaw("unique_moves");
+            uniqueTypesList = readJsonFileFromRaw("unique_types");
+            uniqueAbilitiesList = readJsonFileFromRaw("unique_abilities");
+        }
+        else {
+            fullPokemonDetails = readJsonFile("complete_data.json");
+            uniqueMovesList = readJsonFile("unique_moves.json");
+            uniqueTypesList = readJsonFile("unique_types.json");
+            uniqueAbilitiesList = readJsonFile("unique_abilities.json");
+        }
+
         try {
+
             fullData = new JSONObject(fullPokemonDetails);
             typesData = new JSONArray(uniqueTypesList);
             movesData = new JSONArray(uniqueMovesList);
@@ -140,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
             for (int j = 0; j < abilitiesData.length(); j++) {
                 uniqueAbilities.add(abilitiesData.getString(j)); // Add to set to maintain uniqueness
             }
-            
+
             // Convert the Set back to a List for ArrayAdapter
             List<String> moveSuggestions = new ArrayList<>(uniqueMoveSuggestions);
             List<String> abilitySuggestions = new ArrayList<>(uniqueAbilities);
@@ -186,20 +239,6 @@ public class MainActivity extends AppCompatActivity {
             type2.setAdapter(type2List);
             type2.setThreshold(1);
 
-            Button startSearchButton = findViewById(R.id.startSearch);
-            startSearchButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    updateList();
-
-                    // Create an Intent to start Page2Activity
-                    Intent intent = new Intent(MainActivity.this, ResultTable.class);
-                    intent.putExtra("matchingPokemonList", (Serializable) matchingPokemonList);
-
-                    // Start Page2Activity
-                    startActivity(intent);
-                    }
-            });
 
             AutoCompleteTextView autoCompleteTextView = findViewById(R.id.FillAbility); // Replace 'yourAutoCompleteTextView1' with the ID of the first AutoCompleteTextView
             setAutoCompleteClickListener(autoCompleteTextView);
@@ -247,6 +286,7 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         } catch (JSONException e) {
+            Log.d("Run Error", "1");
             throw new RuntimeException(e);
         }
         }
@@ -256,7 +296,6 @@ public class MainActivity extends AppCompatActivity {
         // Your code to perform actions when the activity is resumed or displayed
         matchingPokemonList = new ArrayList<>();
     }
-
 
     private void setAutoCompleteClickListener(AutoCompleteTextView autoCompleteTextView) {
         autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -424,10 +463,6 @@ public class MainActivity extends AppCompatActivity {
                     }
 
 
-
-
-
-
                     HashMap<String, Object> pokemonDetails = new HashMap<>();
                     pokemonDetails.put("name", name);
                     pokemonDetails.put("hp", hp);
@@ -448,6 +483,7 @@ public class MainActivity extends AppCompatActivity {
             ListView resultListView = findViewById(R.id.resultList);
             resultListView.setAdapter(adapter);*/
         } catch (JSONException e) {
+            Log.d("Run Error", "2");
             e.printStackTrace();
         }
         return matchingPokemonList;
@@ -462,12 +498,55 @@ public class MainActivity extends AppCompatActivity {
                     condition = -1;
                 }
             } catch (NumberFormatException e) {
+                Log.d("Run Error", "3");
                 condition = -1;
             }
         }
         return condition;
     }
+
+    private boolean areFilesAvailable() {
+
+        String[] fileNames = {"complete_data.json", "unique_moves.json", "unique_types.json", "unique_abilities.json"};
+        for (String fileName : fileNames) {
+            File file = new File(getFilesDir(), fileName);
+            if (!file.exists()) {
+                return false; // At least one file does not exist
+            }
+        }
+        return true; // All files exist
+    }
+
     private String readJsonFile(String fileName) {
+        StringBuilder stringBuilder = new StringBuilder();
+        try {
+            File file = new File(getFilesDir(), fileName);
+            if (!file.exists()) {
+                Log.e("FileCheck", "File not found when reading: " + file.getAbsolutePath());
+                //return null; // Handle accordingly
+            }
+
+            FileInputStream fis = new FileInputStream(file);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+
+            reader.close();
+            fis.close();
+        } catch (FileNotFoundException e) {
+            Log.d("Run Error", "4");
+            Log.e("FileCheck", "File not found: " + fileName, e);
+        } catch (IOException e) {
+            Log.d("Run Error", "5");
+            Log.e("FileCheck", "Error reading file: " + fileName, e);
+        }
+
+        return stringBuilder.toString();
+    }
+    private String readJsonFileFromRaw(String fileName) {
         StringBuilder stringBuilder = new StringBuilder();
         try {
             InputStream inputStream = getResources().openRawResource(getResources().getIdentifier(fileName, "raw", getPackageName()));
@@ -483,11 +562,201 @@ public class MainActivity extends AppCompatActivity {
                 // Handle file not found or any other issue
             }
         } catch (IOException e) {
+            Log.d("Run Error", "6");
             e.printStackTrace();
         }
         return stringBuilder.toString();
     }
 
+    private void downloadJsonFiles() {
+        if (!isNetworkAvailable()) {
+            Toast.makeText(this, "No internet connection.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String[] fileNames = {"complete_data", "unique_moves", "unique_types", "unique_abilities"};
+        String baseUrl = "https://raw.githubusercontent.com/HuyLe94/Pokemon_Data_Files/main/";
+
+        Toast.makeText(this, "Starting download...", Toast.LENGTH_SHORT).show();
+
+        Thread thread = new Thread(() -> {
+            AtomicBoolean allFilesDownloaded = new AtomicBoolean(true);
+
+            for (String fileName : fileNames) {
+                String urlString = baseUrl + fileName + ".json";
+                try {
+                    URL url = new URL(urlString);
+                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                    connection.setRequestMethod("GET");
+                    connection.setConnectTimeout(5000);
+                    connection.setReadTimeout(5000);
+
+                    int responseCode = connection.getResponseCode();
+                    if (responseCode == HttpURLConnection.HTTP_OK) {
+                        InputStream inputStream = connection.getInputStream();
+                        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                        StringBuilder stringBuilder = new StringBuilder();
+                        String line;
+
+                        while ((line = reader.readLine()) != null) {
+                            stringBuilder.append(line);
+                        }
+
+                        reader.close();
+                        inputStream.close();
+
+                        String jsonData = stringBuilder.toString();
+                        saveJsonToFile(jsonData, fileName + ".json");
+
+                        //runOnUiThread(() ->
+                        //        Toast.makeText(this, fileName + ".json downloaded successfully.", Toast.LENGTH_SHORT).show()
+                        //);
+
+                    } else {
+                        allFilesDownloaded.set(false);
+                        runOnUiThread(() ->
+                                Toast.makeText(this, "Failed to download " + fileName + ".json", Toast.LENGTH_SHORT).show()
+                        );
+                    }
+                    connection.disconnect();
+                } catch (IOException e) {
+                    allFilesDownloaded.set(false);
+                    Log.d("Run Error", "Error downloading " + fileName + ".json", e);
+                    runOnUiThread(() ->
+                            Toast.makeText(this, "Error downloading " + fileName + ".json", Toast.LENGTH_SHORT).show()
+                    );
+                }
+            }
+
+            // Schedule the final Toast messages
+            new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                if (allFilesDownloaded.get()) {
+                    Toast.makeText(this, "All downloads completed. Please restart the app to apply the new data.", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(this, "Some files failed to download. Please check your connection and try again.", Toast.LENGTH_LONG).show();
+                }
+            }, 10000); // Add a small delay to ensure all messages display
+        });
+
+        thread.start();
+    }
+    private void downloadJsonFiles2() {
+        Log.d("Download", "Attempting to download: ");
+        if (!isNetworkAvailable()) {
+            Toast.makeText(this, "No internet connection.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String[] fileNames = {"complete_data", "unique_moves", "unique_types", "unique_abilities"};
+        String baseUrl = "https://raw.githubusercontent.com/HuyLe94/Pokemon_Data_Files/main/";
+
+        Toast.makeText(this, "Starting download...", Toast.LENGTH_SHORT).show();
+
+        for (String fileName : fileNames) {
+            String urlString = baseUrl + fileName + ".json";
+            Log.d("Download", "Attempting to download: " + urlString);
+            try {
+                URL url = new URL(urlString);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
+                connection.setConnectTimeout(5000);
+                connection.setReadTimeout(5000);
+
+                int responseCode = connection.getResponseCode();
+                Log.d("Download", "Response code for " + fileName + ": " + responseCode);
+
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    InputStream inputStream = connection.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                    StringBuilder stringBuilder = new StringBuilder();
+                    String line;
+
+                    while ((line = reader.readLine()) != null) {
+                        stringBuilder.append(line);
+                    }
+
+                    reader.close();
+                    inputStream.close();
+
+                    String jsonData = stringBuilder.toString();
+                    saveJsonToFile(jsonData, fileName + ".json");
+
+                    runOnUiThread(() -> {
+                        Toast.makeText(this, fileName + ".json downloaded successfully.", Toast.LENGTH_SHORT).show();
+                    });
+
+                } else {
+                    runOnUiThread(() -> {
+                        Toast.makeText(this, "Failed to download " + fileName + ".json", Toast.LENGTH_SHORT).show();
+                    });
+                }
+                connection.disconnect();
+            } catch (IOException e) {
+                Log.e("Download", "Error downloading " + fileName + ": " + e.getMessage());
+            }
+        }
+
+    }
+
+
+
+    private void checkAndLoadData() {
+        if (!areFilesAvailable()) {
+            Log.d("FileCheck", "not exist");
+            downloadJsonFiles();
+        }
+    }
+
+
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    private void saveJsonToFile(String jsonData, String fileName) {
+        FileOutputStream fos = null;
+        try {
+            fos = openFileOutput(fileName, Context.MODE_PRIVATE);
+            fos.write(jsonData.getBytes());
+
+        } catch (IOException e) {
+            Log.d("Run Error", "9");
+            Log.e("FileCheck", "Error saving file: " + fileName, e);
+        } finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    Log.d("Run Error", "10");
+                    Log.e("FileCheck", "Error closing file output stream.", e);
+                }
+            }
+        }
+    }
+
+    private void deleteFiles() {
+
+        Log.d("FileDelete", " deleting");
+        String[] fileNames = {"complete_data.json", "unique_moves.json", "unique_types.json", "unique_abilities.json"};
+
+        for (String fileName : fileNames) {
+            File file = new File(getFilesDir(), fileName);
+            if (file.exists()) {
+                if (file.delete()) {
+                    Log.d("FileDelete", fileName + " deleted successfully.");
+                } else {
+                    Log.e("FileDelete", "Failed to delete " + fileName);
+                }
+            } else {
+                Log.d("FileDelete", fileName + " does not exist.");
+            }
+        }
+
+        // Notify user that files have been deleted
+        Toast.makeText(this, "Downloaded files deleted.", Toast.LENGTH_SHORT).show();
+    }
 
 }
 
