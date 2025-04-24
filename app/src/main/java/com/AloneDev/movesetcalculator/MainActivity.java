@@ -39,6 +39,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.os.Handler;
 import android.os.Looper;
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
     private CheckedTextView gmaxCheck;
     private AdView mAdView;
     private AdView mAdView2;
+    private ProgressBar downloadProgressBar;
 
     private ArrayList<CheckedTextView>nameFilter = new ArrayList<>();
     List<HashMap<String, Object>> matchingPokemonList = new ArrayList<>();
@@ -88,6 +90,8 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
+        downloadProgressBar = findViewById(R.id.downloadProgressBar);
+        downloadProgressBar.setVisibility(View.GONE);
 
         Button updateButton = findViewById(R.id.updateData);
         updateButton.setOnClickListener(new View.OnClickListener() {
@@ -568,6 +572,10 @@ public class MainActivity extends AppCompatActivity {
         return stringBuilder.toString();
     }
 
+    // downloadJsonFiles: Downloads all required JSON files in a background thread.
+    // Shows a horizontal ProgressBar at the top of the screen indicating per-file progress.
+    // Notifies the user with a Toast only after all downloads are finished (success or failure).
+    // The ProgressBar is hidden when not downloading.
     private void downloadJsonFiles() {
         if (!isNetworkAvailable()) {
             Toast.makeText(this, "No internet connection.", Toast.LENGTH_SHORT).show();
@@ -577,10 +585,16 @@ public class MainActivity extends AppCompatActivity {
         String[] fileNames = {"complete_data", "unique_moves", "unique_types", "unique_abilities"};
         String baseUrl = "https://raw.githubusercontent.com/HuyLe94/Pokemon_Data_Files/main/";
 
-        Toast.makeText(this, "Starting download...", Toast.LENGTH_SHORT).show();
+        // Show and reset the ProgressBar
+        runOnUiThread(() -> {
+            downloadProgressBar.setVisibility(View.VISIBLE);
+            downloadProgressBar.setMax(fileNames.length);
+            downloadProgressBar.setProgress(0);
+        });
 
         Thread thread = new Thread(() -> {
             AtomicBoolean allFilesDownloaded = new AtomicBoolean(true);
+            int[] progress = {0};
 
             for (String fileName : fileNames) {
                 String urlString = baseUrl + fileName + ".json";
@@ -608,10 +622,6 @@ public class MainActivity extends AppCompatActivity {
                         String jsonData = stringBuilder.toString();
                         saveJsonToFile(jsonData, fileName + ".json");
 
-                        //runOnUiThread(() ->
-                        //        Toast.makeText(this, fileName + ".json downloaded successfully.", Toast.LENGTH_SHORT).show()
-                        //);
-
                     } else {
                         allFilesDownloaded.set(false);
                         runOnUiThread(() ->
@@ -626,16 +636,22 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(this, "Error downloading " + fileName + ".json", Toast.LENGTH_SHORT).show()
                     );
                 }
+                // Update progress after each file
+                runOnUiThread(() -> {
+                    progress[0]++;
+                    downloadProgressBar.setProgress(progress[0]);
+                });
             }
 
-            // Schedule the final Toast messages
-            new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            // Hide ProgressBar and notify when done
+            runOnUiThread(() -> {
+                downloadProgressBar.setVisibility(View.GONE);
                 if (allFilesDownloaded.get()) {
                     Toast.makeText(this, "All downloads completed. Please restart the app to apply the new data.", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(this, "Some files failed to download. Please check your connection and try again.", Toast.LENGTH_LONG).show();
                 }
-            }, 10000); // Add a small delay to ensure all messages display
+            });
         });
 
         thread.start();
@@ -759,13 +775,3 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
